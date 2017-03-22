@@ -1,16 +1,10 @@
 /******************************************************************************
- *  Juliano Garcia de Oliveira
- *  Compilação:  javac -Xlint ST.java
- *  Execução:    java -ea ST filename
- *  Dependências:
- *
- *  Programa lê o arquivo dado como argumento e cria um dicionário (= tabela de
- *  símbolos) em que as chaves são as palavras (String) no arquivo e o valor
+ *  Compilation:  javac -Xlint ST.java
+ *  Execution:    java -ea ST filename
+ *  Dependencies: 
+ *  Programa lê o arquivo dado como argumento e cria um dicionário (= tabela de 
+ *  símbolos) em que as chaves são as palavras (String) no arquivo e o valor 
  *  associado a cada chave é o número de ocorrências da palavra no arquivo (int).
- *
- *  O dicionário deve ser implementado através de um array de strings para as
- *  chaves e um array de inteiros para os valores. Implemente apenas busca
- *  remoção e inserção SEQUÊNCIAS, tudo a là MAC0110.
  ******************************************************************************/
 
 import edu.princeton.cs.algs4.In;
@@ -40,7 +34,7 @@ public class ST {
             throw new java.lang.NullPointerException("ST.get(): key is null");
         }
         for (int i = 0; i < n; i++)
-            if(keys[i] != null && keys[i].equals(key))
+            if (keys[i] != null && keys[i].equals(key))
                 return values[i];
 
         return -1;
@@ -50,7 +44,7 @@ public class ST {
     // If not in the array, return -1
     public int getPos(String key) {
         for (int i = 0; i < n; i++)
-            if(keys[i] != null && keys[i].equals(key))
+            if (keys[i] != null && keys[i].equals(key))
                 return i;
         return -1;
     }
@@ -63,7 +57,7 @@ public class ST {
         }
         int pos = getPos(key);
         // If the key isn't in the ST
-        if(pos < 0) {
+        if (pos < 0) {
             if (n == max)
                 resize(2 * n);
             keys[n] = key;
@@ -86,12 +80,12 @@ public class ST {
         for (int i = 0; i < n; i++) {
             // If the number of deleted elements in greater then 3/4 of the max number of elements,
             // It will resize down the ST.
-            if(keys[i] != null && keys[i].equals(key)) {
+            if (keys[i] != null && keys[i].equals(key)) {
                 keys[i] = null;
                 values[i] = 0;
                 countDeleted++;
                 total--;
-                if(countDeleted >= 0.75*max) {
+                if (countDeleted >= 0.75*max) {
                     countDeleted = 0;
                     resize(max / 2 + 1);
                 }
@@ -127,12 +121,12 @@ public class ST {
     // Returns the largest (= maior frequência) key in the symbol table
     // Throws java.util.NoSuchElementException - if the symbol table is empty
     public String max() {
-        if(isEmpty())
+        if (isEmpty())
             throw new java.util.NoSuchElementException("ST.max(): Symbol Table is empty");
         int best = 0;
         int pos = 0;
         for (int i = 0; i < n; i++) {
-            if(values[i] > best) {
+            if (values[i] > best) {
                 best = values[i];
                 pos = i;
             }
@@ -148,7 +142,7 @@ public class ST {
         StringBuffer buf = new StringBuffer();
         buf.append("{");
         for (int i = 0; i < n; i++) {
-            if(keys[i] != null) {
+            if (keys[i] != null) {
                 buf.append("'" + keys[i] + "' : " + values[i]);
                 if (i != n - 1)
                     buf.append(",");
@@ -162,7 +156,7 @@ public class ST {
     public String [] keys() {
         String [] top = new String[this.size()];
         for (int i = 0, j = 0; i < n; i++) {
-            if(keys[i] != null)
+            if (keys[i] != null)
                 top[j++] = keys[i];
         }
         return top;
@@ -175,7 +169,7 @@ public class ST {
         int [] newValues = new int[k];
         int j = 0;
         for (int i = 0; i < n; i++) {
-            if(keys[i] != null) {
+            if (keys[i] != null) {
                 newKeys[j] = keys[i];
                 newValues[j++] = values[i];
             }
@@ -185,7 +179,6 @@ public class ST {
         n = j;
         max = k;
     }
-
 }
 
 
