@@ -68,21 +68,12 @@ public class BulgingSquares {
     private static void circleSquares(double[][][] squares) {
         for (int i = 0; i < 15; i++)
             for (int j = 0; j < 15; j++) {
-                if (squares[i][j][0] * squares[i][j][0] + squares[i][j][1] * squares[i][j][1] <= 60 * 60)
+                if (squares[i][j][0] * squares[i][j][0] + squares[i][j][1] * squares[i][j][1] <= 63 * 63)
                     if (squares[i][j][0] == 0 || squares[i][j][1] == 0)
                         drawSquareAxis(squares[i][j], new int[]{i, j});
                     else
                         drawSquare(squares[i][j], new int[]{i, j});
             }
-        // Individual Squares... D:
-        drawSquare(squares[6][1], new int[]{6, 1});
-        drawSquare(squares[1][6], new int[]{1, 6});
-        drawSquare(squares[1][8], new int[]{1, 8});
-        drawSquare(squares[8][1], new int[]{8, 1});
-        drawSquare(squares[13][6], new int[]{13, 6});
-        drawSquare(squares[6][13], new int[]{6, 13});
-        drawSquare(squares[8][13], new int[]{8, 13});
-        drawSquare(squares[13][8], new int[]{13, 8});
     }
 
     // Draw the mini squares in the X and Y axis
