@@ -110,20 +110,14 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
         // escreva seu método a seguir
     }
 
-    private
-
-
-    private Node getKeyNode(Key key) {
-
-
-    }
-    /** Search for key in this symbol table. 
-     * If key is in the table, update the corresponing value.
+    /** Search for key in this symbol table.
+     * If key is in the table, update the corresponding value.
      * Otherwise, add the (key,val) pair to the table.
      * Argument key must be nonnull.
      * If argument val is null, the key must be deleted from the table.
      */
     public void put(Key key, Value val)  {
+        StdOut.print("===INIT: put()===");
         Node p = first;
         Node ant = null;
 
@@ -132,7 +126,7 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
             delete(key);
             return;
         }
-        // Different implementations, it depends on whether the ST is sortable or not
+        // Different implementations, it depends on whether the ST is in order or not
         if(isSorted()) {
             for(; p != null && (p.key).compareTo(key) < 0; ant = p, p = p.next);
             if(p != null) {
@@ -144,7 +138,10 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
                     newEntry.key = key;
                     newEntry.val = val;
                     newEntry.next = p;
-                    ant.next = newEntry;
+                    if (ant != null) {
+                        ant.next = newEntry;
+                    }
+                    total++;
                 }
             }
 
@@ -157,13 +154,14 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
                 first.key = key;
                 first.val = val;
                 first.next = old;
+                total++;
             }
             else {
-                p.val = val;            }
-
+                p.val = val;
+            }
         }
+        StdOut.print("===END: put()===");
 
-        // escreva seu método a seguir
     }
 
 
@@ -172,7 +170,21 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
      */
     public void delete(Key key)  {
         if (key == null) throw new IllegalArgumentException("argument to put() is null");
-        // escreva seu método a seguir
+        Node p = first;
+        Node ant = null;
+        // Special case for head
+        if (first != null && first.key.equals(key)) {
+            first = first.next;
+            total--;
+            return;
+        }
+        for(; p != null && (p.key).compareTo(key) != 0; ant = p, p = p.next);
+        if(p != null) {
+            // garbage collection will take care of p
+            ant.next = p.next;
+            p.next = null; //make sure we clear it
+            total--;
+        }
     }
 
     /** Delete the minimum key and its associated value
@@ -181,15 +193,21 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
      */
     public void deleteMin() {
         if (isEmpty()) throw new java.util.NoSuchElementException("deleteMin(): Symbol table underflow error");
-        // escreva seu método a seguir
+        //assumes the ST is ordered
+        delete(first.key);
     }
 
     /** Delete the maximum key and its associated value
      * from this symbol table.
      */
     public void deleteMax() {
+        Node p = first;
+        Node ant = null;
         if (isEmpty()) throw new java.util.NoSuchElementException("deleteMax(): Symbol table underflow error");
-        // escreva seu método a seguir
+        for(; p != null; ant = p, p = p.next);
+        //assumes the ST is ordered
+        delete(ant.key); // If it's not empty, ant != null
+
     }
 
 
@@ -201,7 +219,8 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
      * Returns null if the table is empty.
      */
     public Key min() {
-        // escreva seu método a seguir
+        if(isEmpty()) return null;
+        return first.key;
     }
 
 
@@ -209,7 +228,12 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
      * Returns null if the table is empty.
      */
     public Key max() {
-        // escreva seu método a seguir
+        if(isEmpty()) return null;
+        Node p = first;
+        Node ant = null;
+        for (; p != null; ant = p, p = p.next);
+        return p.key;
+
     }
 
     /** Returns a key that is strictly greater than 
@@ -219,7 +243,13 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
      * the total number of keys in the table.
      */
     public Key select(int k) {
-        // escreva seu método a seguir
+        // Basically returns the (k+1)nth key
+        // Remember, there's no duplicate keys in ST
+        if(k < 0 || k >= size())
+            return null;
+        Node p = first;
+        for(int i = 0; i < k; i++, p = p.next);
+        return p.key;
     }
 
     /** Returns the greatest key that is 
