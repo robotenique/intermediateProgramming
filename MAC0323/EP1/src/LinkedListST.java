@@ -77,7 +77,10 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
     /** Is the key in this symbol table?
      */
     public boolean contains(Key key) {
-
+        Node p = first;
+        Node ant = null;
+        for(p = first; p != null && p.key.compareTo(key) != 0; p = p.next);
+        return p != null;
     }
 
     /** Returns the number of (key,value) pairs in this symbol table.
@@ -126,38 +129,21 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
             delete(key);
             return;
         }
-        // Different implementations, it depends on whether the ST is in order or not
-        if(isSorted()) {
-            for(; p != null && (p.key).compareTo(key) < 0; ant = p, p = p.next);
-            if(p != null) {
-                if ((p.key).compareTo(key) == 0) {
-                    p.val = val;
-                }
-                else {
-                    Node newEntry = new Node();
-                    newEntry.key = key;
-                    newEntry.val = val;
-                    newEntry.next = p;
-                    if (ant != null) {
-                        ant.next = newEntry;
-                    }
-                    total++;
-                }
-            }
-
-        }
-        else {
-            for (; p != null && p.equals(key); p = p.next);
-            if(p == null) {
-                Node old = first;
-                first = new Node();
-                first.key = key;
-                first.val = val;
-                first.next = old;
-                total++;
+        assert isSorted();
+        for(; p != null && (p.key).compareTo(key) < 0; ant = p, p = p.next);
+        if(p != null) {
+            if ((p.key).compareTo(key) == 0) {
+                p.val = val;
             }
             else {
-                p.val = val;
+                Node newEntry = new Node();
+                newEntry.key = key;
+                newEntry.val = val;
+                newEntry.next = p;
+                if (ant != null) {
+                    ant.next = newEntry;
+                }
+                total++;
             }
         }
         StdOut.print("===END: put()===");
