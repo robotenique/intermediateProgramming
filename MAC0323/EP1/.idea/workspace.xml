@@ -25,11 +25,15 @@
       <file leaf-file-name="LinkedListST.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/LinkedListST.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="260" column="7" lean-forward="true" selection-start-line="260" selection-start-column="7" selection-end-line="260" selection-end-column="7" />
+            <state relative-caret-position="235">
+              <caret line="344" column="20" lean-forward="true" selection-start-line="344" selection-start-column="20" selection-end-line="344" selection-end-column="20" />
               <folding>
-                <element signature="e#0#10972#0" expanded="true" />
+                <element signature="e#0#11429#0" expanded="true" />
                 <element signature="docComment;class#LinkedListST#0" expanded="false" />
+                <element signature="e#9292#9293#0" expanded="true" />
+                <element signature="e#9329#9330#0" expanded="true" />
+                <element signature="e#9904#9905#0" expanded="true" />
+                <element signature="e#9955#9956#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -365,8 +369,12 @@
         <state relative-caret-position="2662">
           <caret line="121" column="26" lean-forward="false" selection-start-line="121" selection-start-column="26" selection-end-line="121" selection-end-column="26" />
           <folding>
-            <element signature="e#0#10972#0" expanded="true" />
+            <element signature="e#0#11429#0" expanded="true" />
             <element signature="docComment;class#LinkedListST#0" expanded="false" />
+            <element signature="e#9292#9293#0" expanded="true" />
+            <element signature="e#9329#9330#0" expanded="true" />
+            <element signature="e#9904#9905#0" expanded="true" />
+            <element signature="e#9955#9956#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -384,8 +392,12 @@
         <state relative-caret-position="2662">
           <caret line="121" column="26" lean-forward="true" selection-start-line="121" selection-start-column="26" selection-end-line="121" selection-end-column="26" />
           <folding>
-            <element signature="e#0#10972#0" expanded="true" />
+            <element signature="e#0#11429#0" expanded="true" />
             <element signature="docComment;class#LinkedListST#0" expanded="false" />
+            <element signature="e#9292#9293#0" expanded="true" />
+            <element signature="e#9329#9330#0" expanded="true" />
+            <element signature="e#9904#9905#0" expanded="true" />
+            <element signature="e#9955#9956#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -594,11 +606,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LinkedListST.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="260" column="7" lean-forward="true" selection-start-line="260" selection-start-column="7" selection-end-line="260" selection-end-column="7" />
+        <state relative-caret-position="235">
+          <caret line="344" column="20" lean-forward="true" selection-start-line="344" selection-start-column="20" selection-end-line="344" selection-end-column="20" />
           <folding>
-            <element signature="e#0#10972#0" expanded="true" />
+            <element signature="e#0#11429#0" expanded="true" />
             <element signature="docComment;class#LinkedListST#0" expanded="false" />
+            <element signature="e#9292#9293#0" expanded="true" />
+            <element signature="e#9329#9330#0" expanded="true" />
+            <element signature="e#9904#9905#0" expanded="true" />
+            <element signature="e#9955#9956#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -261,7 +261,14 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
      */
     public Key floor(Key key) {
         if (key == null) throw new IllegalArgumentException("argument to floor() is null");
-        // escreva seu método a seguir
+        if (isEmpty()) return null;
+        Node p = first;
+        Node ant = null;
+        if(key.compareTo(first.key) < 0)
+            return null;
+        for(; p != null && p.key.compareTo(key) <= 0; ant = p, p = p.next);
+        return ant.key;
+
     }
 
     /** Returns the smallest key that is 
@@ -273,7 +280,14 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
      */
     public Key ceiling(Key key) {
         if (key == null) throw new IllegalArgumentException("argument to ceiling() is null");
-        // escreva seu método a seguir
+        if (isEmpty()) return null;
+        Node p = first;
+        Node ant = null;
+        for(; p != null && p.key.compareTo(key) < 0; ant = p, p = p.next);
+        if(p == null)
+            return null;
+        return p.key;
+
     }
 
     /** Returns all keys in the symbol table as an Iterable.
@@ -299,13 +313,14 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
 
         private class KeysIterator implements Iterator<Key> {
             // variáveis do iterador
-
+            private Node curr = first;
             public boolean hasNext() {
-                // escreva seu método a seguir
+                return curr != null;
             }
 
             public Key next() {
-                // escreva seu método a seguir
+                Key keyIt = curr.key;
+                curr = curr.next;
             }
 
             public void remove() {
