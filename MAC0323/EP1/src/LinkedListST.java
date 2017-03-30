@@ -2,7 +2,7 @@
  *  Compilation:  javac LinkedListST.java
  *  Execution:    java LinkedListST
  *  Dependencies: StdIn.java StdOut.java
- *  Data files:   http://algs4.cs.princeton.edu/31elementary/tinyST.txt  
+ *  Data files:   http://algs4.cs.princeton.edu/31elementary/tinyST.txt
  *
  *  Symbol table implementation with an ordered linked list.
  *
@@ -20,9 +20,7 @@
  *  R 3
  *  S 0
  *  X 7
- *
- *************************************************************************/
-
+ * *************************************************************************/
 // The StdIn class provides static methods for reading strings and numbers from standard input.
 // https://www.ime.usp.br/~pf/sedgewick-wayne/stdlib/documentation/index.html
 // http://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/StdIn.html
@@ -33,31 +31,26 @@ import edu.princeton.cs.algs4.StdIn;
 // http://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/StdOut.html
 import edu.princeton.cs.algs4.StdOut;
 
-// https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html 
+// https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
 // http://codereview.stackexchange.com/questions/48109/simple-example-of-an-iterable-and-an-iterator-in-java
 import java.util.Iterator;
 
 /** This is an implementation of a symbol table whose keys are comparable.
  * The keys are kept in increasing order in an linked list.
- * Following our usual convention for symbol tables, 
+ * Following our usual convention for symbol tables,
  * the keys are pairwise distinct.
  * <p>
- * For additional documentation, see 
- * <a href="http://algs4.cs.princeton.edu/31elementary/">Section 3.1</a> 
- * of "Algorithms, 4th Edition" (p.378 of paper edition), 
+ * For additional documentation, see
+ * <a href="http://algs4.cs.princeton.edu/31elementary/">Section 3.1</a>
+ * of "Algorithms, 4th Edition" (p.378 of paper edition),
  * by Robert Sedgewick and Kevin Wayne.
  *
  */
 
 public class LinkedListST<Key extends Comparable<Key>, Value> {
     // atributos de estado
-    private final int initSize =2;
-    private Key[] keys;
-    private Value[] values;
     private Node first;
-    private int size;
     private int total;
-    private int n;
 
     private class Node {
         Key key;
@@ -70,7 +63,6 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
      */
     public LinkedListST() {
         // Maybe irrelevant...
-        n = 0;
         total = 0;
     }
 
@@ -79,38 +71,47 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
     public boolean contains(Key key) {
         Node p = first;
         Node ant = null;
-        for(p = first; p != null && p.key.compareTo(key) != 0; p = p.next);
-        return p != null;
+        for(p = first; p != null && p.key.compareTo(key) < 0; p = p.next);
+        if(p == null)
+            return false;
+        return p.key.compareTo(key) == 0;
     }
 
     /** Returns the number of (key,value) pairs in this symbol table.
      */
     public int size() {
-       return size;
+        return total;
     }
 
     /** Is this symbol table empty?
      */
     public boolean isEmpty() {
-        return size == 0;
+        return total == 0;
     }
 
-    /** Returns the value associated with the given key, 
+    /** Returns the value associated with the given key,
      *  or null if no such key.
      *  Argument key must be nonnull.
      */
     public Value get(Key key) {
         if (key == null) throw new IllegalArgumentException("argument to get() is null");
-        // escreva seu método a seguir
+        Node p;
+        for(p = first; p != null && p.key.compareTo(key) < 0; p = p.next);
+        if(p == null || p.key.compareTo(key) > 0)
+            return  null;
+        return  p.val;
     }
 
-    /** Returns the number of keys in the table 
+    /** Returns the number of keys in the table
      *  that are strictly smaller than the given key.
      *  Argument key must be nonnull.
      */
     public int rank(Key key) {
         if (key == null) throw new IllegalArgumentException("argument to rank() is null");
-        // escreva seu método a seguir
+        int i = 0;
+        Node p = first;
+        for(; p != null && p.key.compareTo(key) < 0; i++, p = p.next);
+        return i;
     }
 
     /** Search for key in this symbol table.
@@ -120,34 +121,30 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
      * If argument val is null, the key must be deleted from the table.
      */
     public void put(Key key, Value val)  {
-        StdOut.print("===INIT: put()===");
         Node p = first;
         Node ant = null;
-
+        Node newEntry;
         if (key == null) throw new IllegalArgumentException("argument to put() is null");
         if (val == null) {
             delete(key);
             return;
         }
-        assert isSorted();
-        for(; p != null && (p.key).compareTo(key) < 0; ant = p, p = p.next);
-        if(p != null) {
-            if ((p.key).compareTo(key) == 0) {
-                p.val = val;
-            }
-            else {
-                Node newEntry = new Node();
-                newEntry.key = key;
-                newEntry.val = val;
-                newEntry.next = p;
-                if (ant != null) {
-                    ant.next = newEntry;
-                }
-                total++;
-            }
-        }
-        StdOut.print("===END: put()===");
 
+        for(; p != null && (p.key).compareTo(key) < 0; ant = p, p = p.next);
+        if(p != null && p.key.compareTo(key) == 0) {
+            p.val = val;
+        }
+        else {
+            newEntry = new Node();
+            newEntry.key = key;
+            newEntry.val = val;
+            if(ant == null)
+                first = newEntry;
+            else
+                ant.next = newEntry;
+            newEntry.next = p;
+            total++;
+        }
     }
 
 
@@ -218,14 +215,14 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
         Node p = first;
         Node ant = null;
         for (; p != null; ant = p, p = p.next);
-        return p.key;
+        return ant.key;
 
     }
 
-    /** Returns a key that is strictly greater than 
-     * (exactly) k other keys in the table. 
+    /** Returns a key that is strictly greater than
+     * (exactly) k other keys in the table.
      * Returns null if k < 0.
-     * Returns null if k is greater that or equal to 
+     * Returns null if k is greater that or equal to
      * the total number of keys in the table.
      */
     public Key select(int k) {
@@ -238,11 +235,11 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
         return p.key;
     }
 
-    /** Returns the greatest key that is 
+    /** Returns the greatest key that is
      * smaller than or equal to the given key.
      * Argument key must be nonnull.
      * If there is no such key in the table
-     * (i.e., if the given key is smaller than any key in the table), 
+     * (i.e., if the given key is smaller than any key in the table),
      * returns null.
      */
     public Key floor(Key key) {
@@ -257,11 +254,11 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
 
     }
 
-    /** Returns the smallest key that is 
+    /** Returns the smallest key that is
      * greater than or equal to the given key.
      * Argument key must be nonnull.
      * If there is no such key in the table
-     * (i.e., if the given key is greater than any key in the table), 
+     * (i.e., if the given key is greater than any key in the table),
      * returns null.
      */
     public Key ceiling(Key key) {
@@ -285,12 +282,12 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
     }
 
     /**
-     * implements Iterable<Key> significa que essa classe deve 
+     * implements Iterable<Key> significa que essa classe deve
      * ter um método iterator(), acho...
      */
     private class ListKeys implements Iterable<Key> {
         /**
-         * Devolve um iterador que itera sobre os itens da ST 
+         * Devolve um iterador que itera sobre os itens da ST
          * da menor até a maior chave.<br>
          */
         public Iterator<Key> iterator() {
@@ -307,6 +304,7 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
             public Key next() {
                 Key keyIt = curr.key;
                 curr = curr.next;
+                return keyIt;
             }
 
             public void remove() {
@@ -325,7 +323,7 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
         Node p;
         Node ant;
         for (p = first, ant = p; p != null; ant = p, p = p.next)
-            if((p.key).compareTo(ant.key) > 0)
+            if ((p.key).compareTo(ant.key) < 0)
                 return false;
 
         return true;
@@ -340,11 +338,27 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
      */
     public static void main(String[] args) {
         LinkedListST<String, Integer> st;
-        st = new LinkedListST<String, Integer>();
+        st = new LinkedListST<>();
         for (int i = 0; !StdIn.isEmpty(); i++) {
             String key = StdIn.readString();
             st.put(key, i);
         }
+
+        StdOut.println("isEmpty(): "+st.isEmpty());
+        StdOut.println("get(E)"+st.get("E"));
+        StdOut.println("get(\"bola\")"+st.get("bola"));
+        StdOut.println("size()"+st.size());
+        StdOut.println("rank(E)"+st.rank("E"));
+        StdOut.println("Min()"+st.min());
+        StdOut.println("max()"+st.max());
+        StdOut.println("ceiling(J)"+st.ceiling("J"));
+        StdOut.println("floor(J)"+st.floor("J"));
+        StdOut.println("select(4)"+st.select(4));
+        StdOut.println("deleteMin()");
+        StdOut.println("deleteMax()");
+        st.deleteMin();
+        st.deleteMax();
+
         for (String s : st.keys())
             StdOut.println(s + " " + st.get(s));
     }
