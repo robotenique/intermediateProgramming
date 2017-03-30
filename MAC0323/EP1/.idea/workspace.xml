@@ -22,30 +22,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LinkedListST.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/LinkedListST.java">
+      <file leaf-file-name="Tail.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Tail.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1863">
-              <caret line="361" column="20" lean-forward="true" selection-start-line="361" selection-start-column="20" selection-end-line="361" selection-end-column="20" />
+            <state relative-caret-position="494">
+              <caret line="19" column="21" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
-                <element signature="e#0#11676#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#2630#2631#0" expanded="true" />
-                <element signature="e#2658#2659#0" expanded="true" />
-                <element signature="e#2734#2735#0" expanded="true" />
-                <element signature="e#2767#2768#0" expanded="true" />
-                <element signature="method#delete#0;class#LinkedListST#0" expanded="false" />
-                <element signature="method#deleteMin#0;class#LinkedListST#0" expanded="false" />
-                <element signature="method#select#0;class#LinkedListST#0" expanded="false" />
-                <element signature="method#floor#0;class#LinkedListST#0" expanded="false" />
-                <element signature="class#ListKeys#0;class#LinkedListST#0" expanded="false" />
-                <element signature="e#9296#9297#0" expanded="true" />
-                <element signature="e#9345#9346#0" expanded="true" />
-                <element signature="e#9523#9524#0" expanded="true" />
-                <element signature="e#9574#9575#0" expanded="true" />
-                <element signature="e#9759#9760#0" expanded="true" />
-                <element signature="e#9832#9833#0" expanded="true" />
-                <element signature="method#isSorted#0;class#LinkedListST#0" expanded="false" />
+                <element signature="e#2383#2384#0" expanded="true" />
+                <element signature="e#2417#2418#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -88,6 +73,7 @@
         <option value="$PROJECT_DIR$/src/teste.java" />
         <option value="$PROJECT_DIR$/src/tinyST.txt" />
         <option value="$PROJECT_DIR$/src/LinkedListST.java" />
+        <option value="$PROJECT_DIR$/src/Tail.java" />
       </list>
     </option>
   </component>
@@ -96,6 +82,25 @@
     <option name="y" value="32" />
     <option name="width" value="1920" />
     <option name="height" value="1048" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -112,8 +117,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -143,6 +146,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -150,7 +155,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunDashboard">
@@ -165,7 +170,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.LinkedListST">
+  <component name="RunManager" selected="Application.Tail">
     <configuration default="false" name="BulgingSquares" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BulgingSquares" />
       <option name="VM_PARAMETERS" />
@@ -210,6 +215,20 @@
     </configuration>
     <configuration default="false" name="LinkedListST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="LinkedListST" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Combo1" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Tail" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Tail" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -314,18 +333,20 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.BulgingSquares" />
       <item index="1" class="java.lang.String" itemvalue="Application.ST" />
       <item index="2" class="java.lang.String" itemvalue="Application.teste" />
       <item index="3" class="java.lang.String" itemvalue="Application.LinkedListST" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Tail" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.LinkedListST" />
-        <item index="1" class="java.lang.String" itemvalue="Application.teste" />
-        <item index="2" class="java.lang.String" itemvalue="Application.BulgingSquares" />
-        <item index="3" class="java.lang.String" itemvalue="Application.ST" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Application.Tail" />
+        <item index="1" class="java.lang.String" itemvalue="Application.LinkedListST" />
+        <item index="2" class="java.lang.String" itemvalue="Application.teste" />
+        <item index="3" class="java.lang.String" itemvalue="Application.BulgingSquares" />
+        <item index="4" class="java.lang.String" itemvalue="Application.ST" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -370,14 +391,13 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19538969" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25686058" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3391877" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12658228" sideWeight="0.4039517" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12658228" sideWeight="0.5960483" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12658228" sideWeight="0.4006586" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12658228" sideWeight="0.5993414" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39956093" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18196203" sideWeight="0.7486279" order="2" side_tool="true" content_ui="tabs" />
@@ -386,6 +406,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -406,21 +427,11 @@
           <folding>
             <element signature="e#0#11676#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2630#2631#0" expanded="true" />
-            <element signature="e#2658#2659#0" expanded="true" />
-            <element signature="e#2734#2735#0" expanded="true" />
-            <element signature="e#2767#2768#0" expanded="true" />
             <element signature="method#delete#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#deleteMin#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#select#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#floor#0;class#LinkedListST#0" expanded="false" />
             <element signature="class#ListKeys#0;class#LinkedListST#0" expanded="false" />
-            <element signature="e#9296#9297#0" expanded="true" />
-            <element signature="e#9345#9346#0" expanded="true" />
-            <element signature="e#9523#9524#0" expanded="true" />
-            <element signature="e#9574#9575#0" expanded="true" />
-            <element signature="e#9759#9760#0" expanded="true" />
-            <element signature="e#9832#9833#0" expanded="true" />
             <element signature="method#isSorted#0;class#LinkedListST#0" expanded="false" />
           </folding>
         </state>
@@ -433,21 +444,11 @@
           <folding>
             <element signature="e#0#11676#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2630#2631#0" expanded="true" />
-            <element signature="e#2658#2659#0" expanded="true" />
-            <element signature="e#2734#2735#0" expanded="true" />
-            <element signature="e#2767#2768#0" expanded="true" />
             <element signature="method#delete#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#deleteMin#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#select#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#floor#0;class#LinkedListST#0" expanded="false" />
             <element signature="class#ListKeys#0;class#LinkedListST#0" expanded="false" />
-            <element signature="e#9296#9297#0" expanded="true" />
-            <element signature="e#9345#9346#0" expanded="true" />
-            <element signature="e#9523#9524#0" expanded="true" />
-            <element signature="e#9574#9575#0" expanded="true" />
-            <element signature="e#9759#9760#0" expanded="true" />
-            <element signature="e#9832#9833#0" expanded="true" />
             <element signature="method#isSorted#0;class#LinkedListST#0" expanded="false" />
           </folding>
         </state>
@@ -460,21 +461,28 @@
           <folding>
             <element signature="e#0#11676#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2630#2631#0" expanded="true" />
-            <element signature="e#2658#2659#0" expanded="true" />
-            <element signature="e#2734#2735#0" expanded="true" />
-            <element signature="e#2767#2768#0" expanded="true" />
             <element signature="method#delete#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#deleteMin#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#select#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#floor#0;class#LinkedListST#0" expanded="false" />
             <element signature="class#ListKeys#0;class#LinkedListST#0" expanded="false" />
-            <element signature="e#9296#9297#0" expanded="true" />
-            <element signature="e#9345#9346#0" expanded="true" />
-            <element signature="e#9523#9524#0" expanded="true" />
-            <element signature="e#9574#9575#0" expanded="true" />
-            <element signature="e#9759#9760#0" expanded="true" />
-            <element signature="e#9832#9833#0" expanded="true" />
+            <element signature="method#isSorted#0;class#LinkedListST#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LinkedListST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11676#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#delete#0;class#LinkedListST#0" expanded="false" />
+            <element signature="method#deleteMin#0;class#LinkedListST#0" expanded="false" />
+            <element signature="method#select#0;class#LinkedListST#0" expanded="false" />
+            <element signature="method#floor#0;class#LinkedListST#0" expanded="false" />
+            <element signature="class#ListKeys#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#isSorted#0;class#LinkedListST#0" expanded="false" />
           </folding>
         </state>
@@ -487,21 +495,11 @@
           <folding>
             <element signature="e#0#11676#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2630#2631#0" expanded="true" />
-            <element signature="e#2658#2659#0" expanded="true" />
-            <element signature="e#2734#2735#0" expanded="true" />
-            <element signature="e#2767#2768#0" expanded="true" />
             <element signature="method#delete#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#deleteMin#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#select#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#floor#0;class#LinkedListST#0" expanded="false" />
             <element signature="class#ListKeys#0;class#LinkedListST#0" expanded="false" />
-            <element signature="e#9296#9297#0" expanded="true" />
-            <element signature="e#9345#9346#0" expanded="true" />
-            <element signature="e#9523#9524#0" expanded="true" />
-            <element signature="e#9574#9575#0" expanded="true" />
-            <element signature="e#9759#9760#0" expanded="true" />
-            <element signature="e#9832#9833#0" expanded="true" />
             <element signature="method#isSorted#0;class#LinkedListST#0" expanded="false" />
           </folding>
         </state>
@@ -521,21 +519,11 @@
           <folding>
             <element signature="e#0#11676#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2630#2631#0" expanded="true" />
-            <element signature="e#2658#2659#0" expanded="true" />
-            <element signature="e#2734#2735#0" expanded="true" />
-            <element signature="e#2767#2768#0" expanded="true" />
             <element signature="method#delete#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#deleteMin#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#select#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#floor#0;class#LinkedListST#0" expanded="false" />
             <element signature="class#ListKeys#0;class#LinkedListST#0" expanded="false" />
-            <element signature="e#9296#9297#0" expanded="true" />
-            <element signature="e#9345#9346#0" expanded="true" />
-            <element signature="e#9523#9524#0" expanded="true" />
-            <element signature="e#9574#9575#0" expanded="true" />
-            <element signature="e#9759#9760#0" expanded="true" />
-            <element signature="e#9832#9833#0" expanded="true" />
             <element signature="method#isSorted#0;class#LinkedListST#0" expanded="false" />
           </folding>
         </state>
@@ -665,13 +653,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/In.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="181" column="0" lean-forward="true" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/orig.txt" />
     <entry file="file://$PROJECT_DIR$/st-testes/teste1.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -736,33 +717,74 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LinkedListST.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1863">
-          <caret line="361" column="20" lean-forward="true" selection-start-line="361" selection-start-column="20" selection-end-line="361" selection-end-column="20" />
+        <state relative-caret-position="462">
+          <caret line="336" column="37" lean-forward="true" selection-start-line="336" selection-start-column="37" selection-end-line="336" selection-end-column="37" />
           <folding>
             <element signature="e#0#11676#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2630#2631#0" expanded="true" />
-            <element signature="e#2658#2659#0" expanded="true" />
-            <element signature="e#2734#2735#0" expanded="true" />
-            <element signature="e#2767#2768#0" expanded="true" />
             <element signature="method#delete#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#deleteMin#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#select#0;class#LinkedListST#0" expanded="false" />
             <element signature="method#floor#0;class#LinkedListST#0" expanded="false" />
             <element signature="class#ListKeys#0;class#LinkedListST#0" expanded="false" />
-            <element signature="e#9296#9297#0" expanded="true" />
-            <element signature="e#9345#9346#0" expanded="true" />
-            <element signature="e#9523#9524#0" expanded="true" />
-            <element signature="e#9574#9575#0" expanded="true" />
-            <element signature="e#9759#9760#0" expanded="true" />
-            <element signature="e#9832#9833#0" expanded="true" />
             <element signature="method#isSorted#0;class#LinkedListST#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/Bag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1982">
+          <caret line="65" column="21" lean-forward="false" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/LinkedStack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/LinkedQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="48" column="7" lean-forward="true" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/In.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="606">
+          <caret line="705" column="21" lean-forward="false" selection-start-line="696" selection-start-column="0" selection-end-line="708" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/Queue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="28" column="22" lean-forward="false" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="19" column="21" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2383#2384#0" expanded="true" />
+            <element signature="e#2417#2418#0" expanded="true" />
           </folding>
         </state>
       </provider>
