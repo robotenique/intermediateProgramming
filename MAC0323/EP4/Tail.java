@@ -97,7 +97,7 @@ public class Tail {
         }
     }
 
-    /** Returns an iterable object containing the last k lines. 
+    /** Returns an iterable object containing the last k lines.
      *  The value of k depends on the constructor.
      */
     public Iterable<String> lines() {
