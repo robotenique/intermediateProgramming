@@ -55,7 +55,7 @@ public class Tail {
     }   
 
     public Tail(String fileName, int k) {
-        this.fileName = fileName;
+	this.fileName = fileName;
         this.k = k;
         prepareTail();
     }
@@ -66,7 +66,7 @@ public class Tail {
         try {
             in = new In("./"+fileName);
             tail = new Queue<>();
-            while (!in.isEmpty()) {
+            while (!in.isEmpty() && k > 0) {
                 String s = in.readLine();
                 if(tail.size() == k)
                     tail.dequeue();
