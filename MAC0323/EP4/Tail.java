@@ -44,42 +44,23 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Queue;
 
 
-/** Está é classe é inspirada no Tarefa 04 do Paulo Felofiloff para 
- * a edição de 2014 de MAC0323: 
- *
- *     https://www.ime.usp.br/~pf/mac0323-2014/tarefas/T04.html
- *
- * Como diz a tarefa 
- *
- *    "Resolva o problema sem desperdiçar memória. 
- *     Use uma (ou mais) das ADTs que já estudamos." 
- *
- */
-
 public class Tail {
     // atributos de estado 
     private String fileName;
     private int k;
     private Queue<String> tail;
-    /** Construtores.
-     * 
-     */
-    // Construtor que prepara para que o método lines()
-    // retorne um objeto iterável com as 10 últimas linhas
-    // do arquivo fileName. O valor 10 é o default.
+
     public Tail(String fileName) {
         this(fileName, 10);
     }   
 
-    // Construtor que prepara para que o método lines()
-    // retorne um objeto iterável com as k últimas linhas
-    // do arquivo fileName.
     public Tail(String fileName, int k) {
         this.fileName = fileName;
         this.k = k;
         prepareTail();
     }
 
+    // Enqueue lines of the file
     private void prepareTail() {
         In in;
         try {

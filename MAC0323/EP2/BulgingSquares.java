@@ -16,7 +16,6 @@
 import edu.princeton.cs.algs4.StdDraw; // StdDraw.setXscale, StdDraw.setYscale, ...
 
 public class BulgingSquares {
-    // constantes... vixe! use se desejar
     private static final double XMIN = -75;
     private static final double XMAX = 75;
     private static final double YMIN = -75;

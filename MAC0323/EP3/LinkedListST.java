@@ -21,31 +21,9 @@
  *  S 0
  *  X 7
  * *************************************************************************/
-// The StdIn class provides static methods for reading strings and numbers from standard input.
-// https://www.ime.usp.br/~pf/sedgewick-wayne/stdlib/documentation/index.html
-// http://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/StdIn.html
 import edu.princeton.cs.algs4.StdIn;
-
-// This class provides methods for printing strings and numbers to standard output.
-// https://www.ime.usp.br/~pf/sedgewick-wayne/stdlib/documentation/index.html
-// http://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/StdOut.html
 import edu.princeton.cs.algs4.StdOut;
-
-// https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
-// http://codereview.stackexchange.com/questions/48109/simple-example-of-an-iterable-and-an-iterator-in-java
 import java.util.Iterator;
-
-/** This is an implementation of a symbol table whose keys are comparable.
- * The keys are kept in increasing order in an linked list.
- * Following our usual convention for symbol tables,
- * the keys are pairwise distinct.
- * <p>
- * For additional documentation, see
- * <a href="http://algs4.cs.princeton.edu/31elementary/">Section 3.1</a>
- * of "Algorithms, 4th Edition" (p.378 of paper edition),
- * by Robert Sedgewick and Kevin Wayne.
- *
- */
 
 public class LinkedListST<Key extends Comparable<Key>, Value> {
     // atributos de estado
@@ -58,9 +36,6 @@ public class LinkedListST<Key extends Comparable<Key>, Value> {
         Node next;
     }
 
-    /** Constructor.
-     * Creates an empty symbol table with default initial capacity.
-     */
     public LinkedListST() {
         // Maybe irrelevant...
         total = 0;
