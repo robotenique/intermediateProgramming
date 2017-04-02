@@ -1,10 +1,11 @@
 from pathlib import Path
 import pandas as pd
-import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.style.use('ggplot')
+import sys
 def main():
-    arqs = [arq for arq in Path.cwd().iterdir() if arq.suffix == ".csv"]
+    plt.style.use('seaborn-deep')
+    arg = sys.argv[1] if len(sys.argv) > 1 else "*.csv"
+    arqs = list(Path('.').glob(arg))
     for csv in arqs:
         df = pd.read_csv(csv, names=['Tempo', 'Fx', 'Fy', 'Fz', 'Fr'], sep=';', decimal=',')
         df.plot(title=csv.name, x = 'Tempo')
