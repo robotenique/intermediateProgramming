@@ -3,7 +3,7 @@ from itertools import islice, chain
 import json
 
 # Number of lines for each JSON entry
-ENTRY_LENGTH = 9
+ENTRY_LENGTH = 8
 class Walker:
     # Constant / static variable - MAY BE USEFUL..
     SPACE = 30
@@ -39,14 +39,15 @@ class Walker:
             #print (sum((i/t for i, t in zip(range(10, 31, 10), msr)))/len(msr))
             return sum((i/t for i, t in zip(range(10, 31, 10), msr)))/len(msr)
 
-
+'''
 def fileBlock(f, n):
-    '''
-    A generator which returns a block of 'n' lines of
-    a given file 'f', each time it is called, using iterators
-    '''
+    
+    # A generator which returns a block of 'n' lines of
+    # a given file 'f', each time it is called, using iterators
+    
     for line in f:
         yield ''.join(chain([line], islice(f, n - 1)))
+'''
 
 
 def addWalker(w, listWalkers):
@@ -61,10 +62,12 @@ def main():
         raise ValueError("You need to pass a single json file as argument!")
 
     listWalkers = list()
+
     with open(data) as f:
-        for block in fileBlock(f, ENTRY_LENGTH):
+        for block in (''.join(chain([line], islice(f, ENTRY_LENGTH))) for line in f):
             w = json.loads(block)
             addWalker(w, listWalkers)
+            
     for walker in listWalkers:
         print(f"Mean Velocity ({walker.name} - {walker.movType}) = {walker.getVelocity():{3}.{5}} m/s")
 
