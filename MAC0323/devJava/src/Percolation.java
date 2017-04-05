@@ -15,23 +15,11 @@ public class Percolation {
     // create n-by-n grid, with all sites initially blocked
     public Percolation(int n) {
         this.n = n;
-        virt1 = n;
-        virt2 = n + 1;
+        virt1 = n*n;
+        virt2 = n*n + 1;
         grid = new int[n][n];
         // Creates the grid plus 2 virtual sites: n² + 1 and n² + 2
         uf = new WeightedQuickUnionUF(n*n + 2);
-    }
-
-    // Connect the virtual sites to the Top and the Bottom of the grid
-    private void connectVirtualSites() {
-        // Top
-        for (int i = 0; i < n; i++)
-            if(grid[i/n][i%n] == 1)
-                uf.union(this.virt1, i);
-        // Bottom
-        for (int i = n*(n - 1); i < n*n - 1; i++)
-            if(grid[i/n][i%n] == 1)
-                uf.union(this.virt2, i);
     }
 
     private boolean outOfRange(int row, int col) {
@@ -42,30 +30,33 @@ public class Percolation {
     public void open(int row, int col) {
         if(outOfRange(row, col))
             throw new java.lang.NullPointerException("Site is out of range! ["+row+","+col+"]");
+        if(isOpen(row, col)) return;
+        if (row == 0)
+            uf.union(this.virt1, row*n + col);
+        else if (row == n - 1)
+            uf.union(this.virt2, row*n + col);
+
         int[][] sides = new int[][] {
                 { row - 1, col },
                 { row + 1, col },
                 { row, col - 1 },
                 { row, col + 1 }
         };
-        if(grid[row][col] == 0) {
-            grid[row][col] = 1;
-            openSites++;
-            // Check if all neighboors are open and connect if they are
-            for (int i = 0; i < 4; i++)
-               if(!outOfRange(sides[i][0], sides[i][1]) && isOpen(sides[i][0], sides[i][1]))
-                   uf.union(row*n+col, sides[i][0]*n+sides[i][1]);
-        }
+        grid[row][col] = 1;
+        openSites++;
+        // Check if all neighboors are open and connect if they are
+        for (int i = 0; i < 4; i++)
+            if(!outOfRange(sides[i][0], sides[i][1]) && isOpen(sides[i][0], sides[i][1]))
+                uf.union(row * n + col, sides[i][0] * n + sides[i][1]);
+
     }
 
     // is the site (row, col) full?
     public boolean isFull(int row, int col) {
-        connectVirtualSites();
         if(outOfRange(row, col))
             throw new java.lang.NullPointerException("Site is out of range!");
-        return uf.connected(row*n + col, virt1);
+        return uf.connected(row*n + col, this.virt1);
     }
-
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
         return grid[row][col] == 1;
@@ -78,7 +69,6 @@ public class Percolation {
 
     // does the system percolate?
     public boolean percolates() {
-        connectVirtualSites();
         return uf.connected(this.virt1, this.virt2);
     }
 

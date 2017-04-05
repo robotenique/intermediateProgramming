@@ -20,6 +20,7 @@ import java.awt.Font;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
 
 public class PercolationVisualizer {
 
@@ -33,7 +34,6 @@ public class PercolationVisualizer {
         StdDraw.setXscale(-0.05*n, 1.05*n);
         StdDraw.setYscale(-0.05*n, 1.05*n);   // leave a border to write text
         StdDraw.filledSquare(n/2.0, n/2.0, n/2.0);
-
         // draw n-by-n grid
         for (int row = 0; row < n; row++) {
             for (int col = 0; col < n; col++) {
@@ -75,7 +75,7 @@ public class PercolationVisualizer {
         while (!in.isEmpty()) {
             int i = in.readInt();
             int j = in.readInt();
-            perc.open(i - 1, j - 1);
+            perc.open(i, j);
             draw(perc, n);
             StdDraw.show();
             StdDraw.pause(DELAY);
