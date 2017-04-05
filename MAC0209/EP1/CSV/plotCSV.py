@@ -10,5 +10,5 @@ def main():
         df = pd.read_csv(csv, names=['Tempo', 'Fx', 'Fy', 'Fz', 'Fr'], sep=';', decimal=',')
         df.plot(title=csv.name, x = 'Tempo')
         plt.legend(loc='upper right')
-        plt.show()        
+        plt.show()
 main()
