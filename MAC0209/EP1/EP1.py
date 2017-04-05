@@ -2,6 +2,8 @@ import sys
 from itertools import islice, chain
 import json
 
+# Number of lines for each JSON entry
+ENTRY_LENGTH = 9
 class Walker:
     # Constant / static variable - MAY BE USEFUL..
     SPACE = 30
@@ -19,14 +21,13 @@ class Walker:
         self.times = times
 
 
-    def calculateVelocity(self):
+    def getVelocity(self):
         # Calcuate the mean velocity of a given Walker in a run
-        meanVel = sum((self.getVelocity(run) for run in self.times))/len(self.times)
+        meanVel = sum((self.__calculateVelocity(run) for run in self.times))/len(self.times)
         return meanVel
 
-    def getVelocity(self, run):
+    def __calculateVelocity(self, run):
         msr = [float(m) for m in run['measures'].split("|") if m != '']
-        print(msr)
         # Alternate measure
         if(run['mType'] == 'A'):
             #print (sum((i/t for i, t in zip(range(5, 31, 5), msr)))/len(msr))
@@ -50,7 +51,7 @@ def fileBlock(f, n):
 
 def addWalker(w, listWalkers):
     newWalker = Walker(w['walker'], w['movType'], w['times'])
-    listWalkers[newWalker.name] = newWalker
+    listWalkers.append(newWalker)
 
 def main():
     # Parse a json file passed as argument
@@ -59,12 +60,13 @@ def main():
     else:
         raise ValueError("You need to pass a single json file as argument!")
 
-    listWalkers = {}
+    listWalkers = list()
     with open(data) as f:
-        for block in fileBlock(f, 9):
+        for block in fileBlock(f, ENTRY_LENGTH):
             w = json.loads(block)
             addWalker(w, listWalkers)
-    print("Mean Velocity = ",listWalkers['Victor'].calculateVelocity())
+    for walker in listWalkers:
+        print(f"Mean Velocity ({walker.name} - {walker.movType}) = {walker.getVelocity():{3}.{5}} m/s")
 
 if __name__ == '__main__':
     main()
