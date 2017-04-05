@@ -1,10 +1,9 @@
-from pathlib import Path
-import pandas as pd
-import matplotlib.pyplot as plt
 import sys
+from itertools import islice, chain
+import json
 
 class Walker:
-    # Constant / static variable
+    # Constant / static variable - MAY BE USEFUL..
     SPACE = 30
 
     '''
@@ -13,64 +12,59 @@ class Walker:
         name = the name of the Walker
         movType = "MRU" ou "MRUV"
         times = A dict with the movements!
-        ### THIS IS OLD ###
-        timeMethod = "N" (normal) or "A" (alternate)
-        isAlt = True if it's alternate measure, False Otherwise
-        times = if isAlt:
-                times = (a5, b10, a15, b20, a25, b30)
-                else times =  ([a10, a20, a30], [b1, b20, b30])
-
-        OBS: Pay attention to "times" type!
     '''
-    def __init__(self, name, movType, timeMethod, isAlt, times):
+    def __init__(self, name, movType, times):
         self.name = name
         self.movType = movType
-        self.timeMethod = timeMethod
         self.times = times
-        self.isAlt = isAlt
 
-    def meanVelocity(self):
-        if(self.isAlt)
-            self.meanVelocityAlt()
-        # Method : take the median between the two measures
-        timeTaken = [(t + y)/2 for t, y in zip(self.times[0], self.times[1])]
-        # Velocity in each point
-        vel = [i/t for i, t in zip(range(10, 35, 10), timeTaken)]
-        # Mean velocity
-        meanVel = sum(vel)/len(vel)
-        print(timeTaken)
-        print(vel)
-        print(meanVel)
 
-    def meanVelocityAlt(self):
-        # Velocity in each point
-        vel = [i/t for i, t in zip(range(5, 35, 5), self.times)]
-        # Mean Velocity
-        meanVel = sum(vel)/len(vel)
-        print(self.times)
-        print(vel)
-        print(meanVel)
+    def calculateVelocity(self):
+        # Calcuate the mean velocity of a given Walker in a run
+        meanVel = sum((self.getVelocity(run) for run in self.times))/len(self.times)
+        return meanVel
 
-def parseData(data):
+    def getVelocity(self, run):
+        msr = [float(m) for m in run['measures'].split("|") if m != '']
+        print(msr)
+        # Alternate measure
+        if(run['mType'] == 'A'):
+            #print (sum((i/t for i, t in zip(range(5, 31, 5), msr)))/len(msr))
+            return sum((i/t for i, t in zip(range(5, 31, 5), msr)))/len(msr)
+        else:
+            # Takes the mean of both time measures of the same pos
+            msr = [(i+j)/2 for i, j in zip(msr[:len(msr)//2],msr[len(msr)//2:])]
+            # Makes deltaS/deltaT for every t and space, then takes the mean
+            #print (sum((i/t for i, t in zip(range(10, 31, 10), msr)))/len(msr))
+            return sum((i/t for i, t in zip(range(10, 31, 10), msr)))/len(msr)
+
+
+def fileBlock(f, n):
     '''
-    Parse a 'pup' file, and return a dict
+    A generator which returns a block of 'n' lines of
+    a given file 'f', each time it is called, using iterators
     '''
-    walker = ''
-    for line in data:
-        if()
+    for line in f:
+        yield ''.join(chain([line], islice(f, n - 1)))
+
+
+def addWalker(w, listWalkers):
+    newWalker = Walker(w['walker'], w['movType'], w['times'])
+    listWalkers[newWalker.name] = newWalker
 
 def main():
-    # Parse a pup file passed as argument
-    if(len(sys.argv) == 2 and sys.argv[1][-4:] == ".pup")
-        data = open(data, 'r')
-    else
-        raise ValueError("You need to pass a single \'.pup\' file as argument!")
+    # Parse a json file passed as argument
+    if(len(sys.argv) == 2 and sys.argv[1][-5:] == ".json"):
+        data = sys.argv[1]
+    else:
+        raise ValueError("You need to pass a single json file as argument!")
 
-    data = [line.split("\n") for line in data]
-    dictWalkers = parseData(data)
-
-
-
+    listWalkers = {}
+    with open(data) as f:
+        for block in fileBlock(f, 9):
+            w = json.loads(block)
+            addWalker(w, listWalkers)
+    print("Mean Velocity = ",listWalkers['Victor'].calculateVelocity())
 
 if __name__ == '__main__':
     main()
