@@ -72,9 +72,19 @@ public class Percolation {
         return uf.connected(this.virt1, this.virt2);
     }
 
+    // unit testing (required)
     public static void main(String[] args) {
-        Percolation perc = new Percolation(10);
-
-    }  // unit testing (required)
-
+        int n = 200;
+        Percolation perc = new Percolation(n);
+        perc.open(0,0);
+        perc.open(n - 1, n - 1);
+        for (int i = 0; i < n; i++)
+            perc.open(0, i);
+        for(int i = 0; i < n; i++)
+            perc.open(i, n/2);
+        if(!perc.percolates())
+            StdOut.println("DEU RUIM!");
+        if(perc.numberOfOpenSites() != 2*n)
+            StdOut.println("Número errado de sites abertos!");
+    }
 }
