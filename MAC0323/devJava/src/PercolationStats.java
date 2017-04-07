@@ -3,6 +3,7 @@
  */
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.Stopwatch;
 
 public class PercolationStats {
     private int n;
@@ -62,13 +63,17 @@ public class PercolationStats {
 
     public static void main(String[] args) {
         // Unit tests
-        int n = 400;
-        int trials = 400;
+        int n = 4000;
+        int trials = 1;
+        Stopwatch timer1 = new Stopwatch();
         PercolationStats sts = new PercolationStats(n, trials);
-        StdOut.println("PercolationStats("+n+", "+trials+")");
-        StdOut.println("mean()                  ="+sts.mean());
+        /*StdOut.println("mean()                  ="+sts.mean());
         StdOut.println("stddev()                ="+sts.stddev());
         StdOut.println("confidenceLow()         ="+sts.confidenceLow());
-        StdOut.println("confidenceHigh()        ="+sts.confidenceHigh());
+        StdOut.println("confidenceHigh()        ="+sts.confidenceHigh());*/
+        double time1 = timer1.elapsedTime();
+        StdOut.println("PercolationStats("+n+", "+trials+")");
+        StdOut.println("time elapsed: "+time1);
+
     }
 }

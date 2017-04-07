@@ -5,6 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 public class Percolation {
     private WeightedQuickUnionUF uf;
+    private WeightedQuickUnionUF ufAux;
     // 0 - Closed , 1 - Open
     private int [][] grid;
     private int n, virt1, virt2;
@@ -20,6 +21,8 @@ public class Percolation {
         grid = new int[n][n];
         // Creates the grid plus 2 virtual sites: n² + 1 and n² + 2
         uf = new WeightedQuickUnionUF(n*n + 2);
+        ufAux = new WeightedQuickUnionUF(n*n + 1);
+
     }
 
     private boolean outOfRange(int row, int col) {
@@ -31,8 +34,10 @@ public class Percolation {
         if(outOfRange(row, col))
             throw new java.lang.NullPointerException("Site is out of range! ["+row+","+col+"]");
         if(isOpen(row, col)) return;
-        if (row == 0)
-            uf.union(this.virt1, row*n + col);
+        if (row == 0) {
+            uf.union(this.virt1, row * n + col);
+            ufAux.union(this.virt1, row * n + col);
+        }
         else if (row == n - 1)
             uf.union(this.virt2, row*n + col);
 
@@ -46,8 +51,10 @@ public class Percolation {
         openSites++;
         // Check if all neighboors are open and connect if they are
         for (int i = 0; i < 4; i++)
-            if(!outOfRange(sides[i][0], sides[i][1]) && isOpen(sides[i][0], sides[i][1]))
+            if(!outOfRange(sides[i][0], sides[i][1]) && isOpen(sides[i][0], sides[i][1])) {
                 uf.union(row * n + col, sides[i][0] * n + sides[i][1]);
+                ufAux.union(row * n + col, sides[i][0] * n + sides[i][1]);
+            }
 
     }
 
@@ -55,7 +62,7 @@ public class Percolation {
     public boolean isFull(int row, int col) {
         if(outOfRange(row, col))
             throw new java.lang.NullPointerException("Site is out of range!");
-        return uf.connected(row*n + col, this.virt1);
+        return ufAux.connected(row*n + col, this.virt1);
     }
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
