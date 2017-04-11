@@ -107,6 +107,7 @@ public class Deque<Item>  implements Iterable<Item>{
                 curr = curr.next;
                 return currItem;
             }
+            @Override
             public void remove() {
                 throw new UnsupportedOperationException();
             }
