@@ -15,6 +15,8 @@ public class Percolation {
 
     // create n-by-n grid, with all sites initially blocked
     public Percolation(int n) {
+    	if (n <= 0)
+    	throw new java.lang.IllegalArgumentException("n must be > 0 !");
         this.n = n;
         virt1 = n*n;
         virt2 = n*n + 1;
@@ -31,15 +33,22 @@ public class Percolation {
 
     // open the site (row, col) if it is not open already
     public void open(int row, int col) {
-        if(outOfRange(row, col))
+        if(outOfRange(row, col))     	
             throw new java.lang.NullPointerException("Site is out of range! ["+row+","+col+"]");
         if(isOpen(row, col)) return;
         if (row == 0) {
+        	        if(outOfRange(row, col))     	
+            throw new java.lang.NullPointerException("Site is out of range! ["+row+","+col+"]");
+
             uf.union(this.virt1, row * n + col);
             ufAux.union(this.virt1, row * n + col);
         }
-        else if (row == n - 1)
+        if (row == n - 1){
+        	        if(outOfRange(row, col))     	
+            throw new java.lang.NullPointerException("Site is out of range! ["+row+","+col+"]");
+
             uf.union(this.virt2, row*n + col);
+        }
 
         int[][] sides = new int[][] {
                 { row - 1, col },
@@ -61,11 +70,13 @@ public class Percolation {
     // is the site (row, col) full?
     public boolean isFull(int row, int col) {
         if(outOfRange(row, col))
-            throw new java.lang.NullPointerException("Site is out of range!");
+            throw new java.lang.NullPointerException("Site is out of range! ["+row+","+col+"]");
         return ufAux.connected(row*n + col, this.virt1);
     }
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
+    	if(outOfRange(row, col))
+            throw new java.lang.NullPointerException("Site is out of range! ["+row+","+col+"]");
         return grid[row][col] == 1;
     }
 
