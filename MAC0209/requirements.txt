@@ -1,9 +1,0 @@
-cycler==0.10.0
-matplotlib==2.0.0
-numpy==1.12.1
-pygame==1.9.4.dev0
-pyparsing==2.1.4
-python-dateutil==2.6.0
-pytz==2016.10
-six==1.10.0
-
