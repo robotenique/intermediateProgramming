@@ -23,6 +23,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public int size() {
         return n;
     }
+
     // add the item
     public void enqueue(Item item) {
         if(item == null)
@@ -53,13 +54,15 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if(isEmpty())
             throw new java.util.NoSuchElementException("sample(): The queue is empty!");
         int rPos = StdRandom.uniform(n);
+        //while(items[rPos] == null)
+        //    rPos = StdRandom.uniform(n);
         Item k = items[rPos];
         return k;
     }
 
     // reduce the array to 2*n
     private void resize() {
-        max = 2*n;
+        max = 2*n + 1;
         Item[] newArr = (Item[]) new Object[max];
         for (int i = 0; i < n; i++) {
             newArr[i] = items[i];
@@ -122,10 +125,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             StdOut.println("it() - "+s);
         StdOut.println("=====================FIM=====================");
         StdOut.println("size() : "+rq.size());
-        StdOut.println("size() : "+rq.size());
         StdOut.println("sample() : "+rq.sample());
         StdOut.println("sample() : "+rq.sample());
         StdOut.println("sample() : "+rq.sample());
+        StdOut.println("sample() : "+rq.sample());
+        StdOut.println("=====================FIM=====================");
+
         StdOut.println("dequeue() : "+rq.dequeue());
         StdOut.println("dequeue() : "+rq.dequeue());
         StdOut.println("dequeue() : "+rq.dequeue());
@@ -140,5 +145,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         rq.dequeue();
         StdOut.println("size() : "+rq.size());
         StdOut.println("isEmpty() : "+rq.isEmpty());
+        rq.enqueue("top");
+        StdOut.println("size() : "+rq.size());
+        StdOut.println("SAMPLEANDO = "+rq.sample());
+        StdOut.println("SAMPLEANDO = "+rq.sample());
+        StdOut.println("SAMPLEANDO = "+rq.sample());
+        StdOut.println("SAMPLEANDO = "+rq.sample());
     }
 }
