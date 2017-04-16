@@ -49,7 +49,7 @@ def main():
 	v = v0 = 10
 	t = t0 = 0
 	y = y0 = 100
-	deltaT = 0.00008 #Seconds
+	deltaT = 0.8 #Seconds
 	finalT = 10
 
 
