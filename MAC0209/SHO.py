@@ -2,7 +2,7 @@
 Euler-cromer and Euler algorithm simulating the Simple
 Harmonic Motion!
 
-eRes = tuple with the states of the Euler Cromer algorithm
+ecRes = tuple with the states of the Euler Cromer algorithm
 eoRes = tuple with the states of the classic Euler algorithm
 aRes = tuple with the states of the analytical calculation
 '''
@@ -40,11 +40,12 @@ def velA(k, x0, v0, t):
 	return v
 
 
-def plotGraph(eoRes, eRes, aRes, func):
+def plotGraph(eoRes, ecRes, erRes, aRes, func):
 	plt.figure(figsize=(10,6))
-	func(eoRes[0], eoRes[2], label = "Euler Method")
-	func(eRes[0], eRes[2], label = "Euler Cromer Method")
-	func(aRes[0], aRes[2], label = "Analytical Method")
+	func(eoRes[2], eoRes[1], label = "Euler Method")
+	func(ecRes[2], ecRes[1], label = "Euler cromer Method")
+	func(erRes[2], erRes[1], label = "Euler Richardson Method")
+	func(aRes[2], aRes[1], label = "Analytical Method")
 	plt.tight_layout(pad=3.08)
 	plt.legend(loc="upper left")
 	plt.title("Euler / Euler Cromer Method vs Analytic solution", fontsize=15)
@@ -61,57 +62,75 @@ def main():
 	finalT = int(input("Digite o tempo final: "))
 	'''
 	# Manual input
-	k = 1
+	k = 100
 	v = v0 = 0
 	t = t0 = 0
 	x = x0 = 1
-	deltaT = 0.0001 # Seconds
+	deltaT = 0.001 # Seconds
 	finalT = 10
 
 
-	eRes = [[],[],[]]
+	ecRes = [[],[],[]]
 	aRes = [[],[],[]]
 	eoRes = [[],[],[]]
+	erRes = [[],[],[]]
 
-	# Euler-cromer solution
-	while t <= finalT:
-		v -= k*x*deltaT
-		x += v*deltaT
-		t += deltaT
-		eRes[0].append(t)
-		eRes[1].append(v)
-		eRes[2].append(x)
-
-	t = t0
-	v = v0
-	x = x0
 	# Euler solution
 	while t <= finalT:
 		x += v*deltaT
 		v -= k*x*deltaT
+		t += deltaT
 		eoRes[1].append(v)
 		eoRes[2].append(x)
-		t += deltaT
 		eoRes[0].append(t)
+
+	t = t0
+	v = v0
+	x = x0
+
+	# Euler-Cromer solution
+	while t <= finalT:
+		v -= k*x*deltaT
+		x += v*deltaT
+		t += deltaT
+		ecRes[0].append(t)
+		ecRes[1].append(v)
+		ecRes[2].append(x)
+
+	t = t0
+	v = v0
+	x = x0
+
+
+	# Euler-Richardson solution
+	while t <= finalT:
+		vA = v - k*x*(1/2)*deltaT
+		xA = x + vA*(1/2)*deltaT
+		v -= k*xA*deltaT
+		x += vA*deltaT
+		t += deltaT
+		erRes[0].append(t)
+		erRes[1].append(v)
+		erRes[2].append(x)
 
 
 	t = t0
 	# Analytical solution
 	#deltaT = 0.0001
 	while t <= finalT:
+		t += deltaT
 		ini_tuple = (k, x0, v0, t)
 		aRes[0].append(t)
 		aRes[1].append(velA(*ini_tuple))
 		aRes[2].append(posA(*ini_tuple))
-		t += deltaT
 
 
 	initial = 0
 	dif1 = 0
 	dif2 = 0
 
-	plotGraph(eoRes, eRes, aRes, plt.plot)
-	err = calcErr(eRes, aRes)
+	plotGraph(eoRes, ecRes, erRes, aRes, plt.plot)
+	err = calcErr(ecRes, aRes)
 	plt.plot(err[0], err[2], label="Erro")
 	plt.show()
 if __name__ == '__main__':
