@@ -11,16 +11,40 @@ class MoviesController < ApplicationController
   end
 
   def index
-	  @all_ratings = Movie.pluck(:rating).uniq()
-	  filter = params[:ratings] ? params[:ratings].keys : @all_ratings
-	  if params[:orderby]
-		  # TODO: KEEP THE FILTERED MOVIES WHEN TRYING TO ORDER
-		  @movies = Movie.where(:rating => filter).order(params[:orderby])
-		  @set = params[:orderby]
-	  else
-		  @set = false
-		  @movies = Movie.where(:rating => filter)
-	end
+      @all_ratings = Movie.pluck(:rating).uniq()
+      if not session[:ratings]
+    	  session[:ratings] = Hash[@all_ratings.map { |i| [i, 1] }]
+      end
+      if not session[:orderby]
+          session[:orderby] = ""
+      end
+
+      if not params[:ratings]
+          # TODO: Finish this shiiiiiiiiiitt
+      end
+
+
+
+      if not params[:ratings]
+          params[:ratings] = session[:ratings]
+      end
+      session[:ratings] = params[:ratings]
+      filter = params[:ratings].keys
+      if params[:orderby]
+          if params[:orderby] == "title" and not params[:ratings]
+              redirect_to movies_path({:orderby => params[:orderby], :ratings => session[:ratings]})
+          end
+    	  session[:orderby] = params[:orderby]
+          @movies = Movie.where(:rating => filter).order(params[:orderby])
+    	  @set = params[:orderby]
+      elsif session[:orderby]
+          params[:orderby] = session[:orderby]
+          @movies = Movie.where(:rating => filter).order(params[:orderby])
+    	  @set = params[:orderby]
+      else
+    	  @set = false
+    	  @movies = Movie.where(:rating => filter)
+      end
   end
 
   def new

@@ -3,17 +3,17 @@
 = form_tag movies_path, :method => :get, :id => "ratings_form" do
   Include:
   - @all_ratings.each do |rating|
-    = check_box_tag "ratings[#{rating}]"
+    = check_box_tag "ratings[#{rating}]" ,rating, params[:ratings].include?(rating)
     = rating
-  = submit_tag 'Refresh' , :id => "ratings_form" 
+  = submit_tag 'Refresh' , :id => "ratings_form"
 
 
 %table#movies
   %thead
     %tr
-      %th{:class => @set=="title" ? "hilite" : ""}= link_to "Movie Title", root_path({:orderby => "title"})
-      %th{:class => @set=="rating" ? "hilite" : ""}= link_to "Rating" , root_path({:orderby => "rating"})
-      %th{:class => @set=="release_date" ? "hilite" : ""}= link_to "Release Date" , root_path({:orderby => "release_date"})
+      %th{:class => @set=="title" ? "hilite" : ""}= link_to "Movie Title", movies_path({:orderby => "title"})
+      %th{:class => @set=="rating" ? "hilite" : ""}= link_to "Rating" , movies_path({:orderby => "rating"})
+      %th{:class => @set=="release_date" ? "hilite" : ""}= link_to "Release Date" , movies_path({:orderby => "release_date"})
       %th  More Info
   %tbody
     - @movies.each do |movie|
