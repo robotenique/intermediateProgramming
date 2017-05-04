@@ -37,8 +37,6 @@ output:
 
 ###2. Quartzo (Ametista)
 
-<img style="float: right;" src="ametista.jpg">
-
 ![ametista](ametista.jpg){#id .class width=400}
 
 - Brilho: Não metálico, vítreo
