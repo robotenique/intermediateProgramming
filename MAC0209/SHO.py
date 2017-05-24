@@ -42,10 +42,10 @@ def velA(k, x0, v0, t):
 
 def plotGraph(eoRes, ecRes, erRes, aRes, func):
     plt.figure(figsize=(10,6))
-    func(eoRes[0], eoRes[3], label = "Euler Method")
-    func(ecRes[0], ecRes[3], label = "Euler cromer Method")
-    func(erRes[0], erRes[3], label = "Euler Richardson Method")
-    func(aRes[0], aRes[3], label = "Analytical Method")
+    func(eoRes[0], eoRes[1], label = "Euler Method")
+    func(ecRes[0], ecRes[1], label = "Euler cromer Method")
+    func(erRes[0], erRes[1], label = "Euler Richardson Method")
+    func(aRes[0], aRes[1], label = "Analytical Method")
     plt.tight_layout(pad=3.08)
     plt.legend(loc="upper left")
     plt.title("Euler / Euler Cromer Method vs Analytic solution", fontsize=15)
@@ -68,7 +68,7 @@ def main():
     v = v0 = 300
     t = t0 = 0
     x = x0 = 1
-    deltaT = 0.1 # Seconds
+    deltaT = 0.001 # Seconds
     finalT = 10
 
 
