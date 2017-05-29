@@ -74,7 +74,6 @@ public class MeuSeparateChainingHashST<Key, Value> {
     public MeuSeparateChainingHashST(int m, double alfaInf, double alfaSup) {
         iPrimes = calculatePRIMESpos(m);
         this.m = PRIMES[iPrimes];
-        StdOut.println("CRIANDO TABELA....M = "+m);
         this.alfaSup = alfaSup;
         this.alfaInf = alfaInf;
         st = (SequentialSearchST<Key, Value>[]) new SequentialSearchST[m];
@@ -185,9 +184,6 @@ public class MeuSeparateChainingHashST<Key, Value> {
     public double chiSquare() {
         double sum = 0;
         double y = alpha();
-        StdOut.println("VALOR "+y);
-        StdOut.println("VALOR n = "+n);
-        StdOut.println("VALOR m ="+m);
         for (int i = 0; i < m; i++)
             sum += Math.pow(st[i].size() - y, 2);
         return (1.0/y)*sum;
