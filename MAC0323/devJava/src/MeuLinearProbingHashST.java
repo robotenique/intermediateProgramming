@@ -1,50 +1,12 @@
-/*************************************************************************
- *  Compilation:  javac MeuLinearProbingHashST.java
- *  Execution:    java MeuLinearProbingHashST <alfa inf> <alfa sup> <arquivo>
- *  
- *  Symbol table implementation with linear probing hash table.
- *
- *************************************************************************/
-
-/**
-   The LinearProbingHashST class represents a symbol table of generic
-   key-value pairs. 
-
-   It supports the usual put, get, contains, delete, size, and is-empty
-   methods. It also provides a keys method for iterating over all of the
-   keys. A symbol table implements the associative array abstraction:
-   when associating a value with a key that is already in the symbol
-   table, the convention is to replace the old value with the new
-   value. 
-
-   Unlike Map, this class uses the convention that values cannot
-   be null—setting the value associated with a key to null is equivalent
-   to deleting the key from the symbol table.
-*/
-import edu.princeton.cs.algs4.LinearProbingHashST; 
-
-// The Queue class represents a first-in-first-out (FIFO) queue of generic items.
+import edu.princeton.cs.algs4.LinearProbingHashST;
 import edu.princeton.cs.algs4.Queue;
-
-// Input. This class provides methods for reading strings and numbers from standard input,
-// file input, URLs, and sockets.
-// https://www.ime.usp.br/~pf/sedgewick-wayne/stdlib/documentation/index.html
-// http://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/In.html
-import edu.princeton.cs.algs4.In; // arquivo
-
-// This class provides methods for printing strings and numbers to standard output.
-// https://www.ime.usp.br/~pf/sedgewick-wayne/stdlib/documentation/index.html
-// http://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/StdOut.html
-import edu.princeton.cs.algs4.StdOut; 
-
-// Stopwatch. This class is a data type for measuring the running time (wall clock) of a program.
-// https://www.ime.usp.br/~pf/sedgewick-wayne/algs4/documentation/index.html
-import edu.princeton.cs.algs4.Stopwatch; // arquivo
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.Stopwatch;
+import edu.princeton.cs.algs4.StdRandom;
 
 
 public class MeuLinearProbingHashST<Key, Value> {
-    // largest prime <= 2^i for i = 3 to 31
-    // not currently used for doubling and shrinking
     // NOTA: Esses valores são todas as possíveis dimensões da tabela de hash.
     private static final int[] PRIMES = {
         7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
@@ -54,10 +16,8 @@ public class MeuLinearProbingHashST<Key, Value> {
     };
 
     private static final int INIT_CAPACITY = PRIMES[0];
-
     // limite inferior default para o fator de carga
     private static final double ALFAINF_DEFAULT = 0.125;
-    
     // limite superior default para o fator de carga
     private static final double ALFASUP_DEFAULT = 0.5;
 
@@ -65,47 +25,21 @@ public class MeuLinearProbingHashST<Key, Value> {
     private int m;           // size of linear probing table
     private Key[] keys;      // the keys
     private Value[] vals;    // the values
-
-    // NOTA: indice na tabela de primos correspondente ao valor de 'm'
     private int iPrimes = 0;
-
-    // NOTA: alfa é o fator de carga (= load factor) n/m
-    //       no caso do tratamento de colisão por sondagem linear alfa é
-    //       a porcentagem da tabela que está ocupada.
     //       alfaSup é o limite superior para o fator de carga.
     //       Usado no método put().
     private final double alfaSup;
-
-    // NOTA: alfa é o fator de carga (= load factor) n/m
-    //       no caso do tratamento de colisão por sondagem linear alfa é
-    //       a porcentagem da tabela que está ocupada.
     //       alfaSup é o limite superior para o fator de carga.
     //       Usado no método delete().
     private final double alfaInf;
-    
 
-    /** 
-    * Construtor: cria uma tabela de espalhamento 
-    * com resolução de colisões por encadeamento. 
-    */
+
     public MeuLinearProbingHashST() {
         this(INIT_CAPACITY, ALFAINF_DEFAULT, ALFASUP_DEFAULT);
     }
-
-   /** 
-    * Construtor: cria uma tabela de espalhamento 
-    * com (pelo menos) m posições.
-    */
     public MeuLinearProbingHashST(int m) {
         this(m, ALFAINF_DEFAULT, ALFASUP_DEFAULT);
     }
-
-   /** 
-    * Construtor: cria uma tabela de espalhamento 
-    * em que a maior porcentagem de posiçõs preenchidas é 
-    * alfaSup e a menor porcetagem é alfaInf (bem, se a tabela for 
-    * muito pequena pode ser menor que alfaInf).
-    */
     public MeuLinearProbingHashST(double alfaInf, double alfaSup) {
         this(INIT_CAPACITY, alfaInf, alfaSup);
     } 
@@ -130,35 +64,51 @@ public class MeuLinearProbingHashST<Key, Value> {
      */
     public MeuLinearProbingHashST(int m, double alfaInf, double alfaSup) {
         // TAREFA: veja o método original e faça as adaptações necessárias
+        iPrimes = calculatePRIMESpos(m);
+        this.m = PRIMES[iPrimes];
+        this.alfaSup = alfaSup;
+        this.alfaInf = alfaInf;
+        n = 0;
+        keys = (Key[])   new Object[m];
+        vals = (Value[]) new Object[m];
     }
-    
-    // return the number of key-value pairs in the symbol table
+
+    private double alpha() {
+        double alf = (double) n;
+        return alf/m;
+    }
+    private int calculatePRIMESpos(int m) {
+        int k =  bSearch(PRIMES, 0, PRIMES.length, m);
+        if(PRIMES[k] != m && k + 1 == PRIMES.length)
+            throw new UnsupportedOperationException("The size is too big!");
+        return PRIMES[k] == m ? k : k + 1;
+    }
+
+    private int bSearch(int[] arr, int lo, int hi, int x){
+        if(lo > hi)
+            return hi;
+        int mid = (lo + hi)/2;
+        if(x < arr[mid]) return bSearch(arr, lo, mid  - 1, x);
+        else if(x > arr[mid]) return bSearch(arr, mid + 1, hi, x);
+        return mid;
+    }
+
     public int size() {
         return n;
     }
 
-    // is the symbol table empty?
     public boolean isEmpty() {
         return n == 0;
     }
 
-    // does a key-value pair with the given key exist in the symbol table?
     public boolean contains(Key key) {
         return get(key) != null;
     }
 
-    // hash function for keys - returns value between 0 and M-1
     private int hash(Key key) {
         return (key.hashCode() & 0x7fffffff) % m;
     }
 
-    /* return the value associated with the given key, null if no such value
-     *
-     * Supõe que uma posição i da tabela está disponível se 
-     * vals[i] == null. Isso permite que seja utilizada uma estratégia 
-     * de "lazy deletion", se desejarmos.
-     * 
-     */
     public Value get(Key key) {
         for (int i = hash(key); vals[i] != null; i = (i + 1) % m) 
             if (keys[i].equals(key))
@@ -179,8 +129,15 @@ public class MeuLinearProbingHashST<Key, Value> {
      * tamanho da tabela.
      */
     private void resize(int k) {
-        // TAREFA: veja o método original e faça adaptação para que
-        //         o tamanho da nova tabela seja PRIMES[k].
+        int length = k < 0 ? 0 : PRIMES[k];
+        MeuLinearProbingHashST<Key, Value> temp = new MeuLinearProbingHashST<Key, Value>(length, alfaInf, alfaSup);
+        for (int i = 0; i < m; i++)
+            if (keys[i] != null)
+                temp.put(keys[i], vals[i]);
+        this.keys = temp.keys;
+        this.vals = temp.vals;
+        this.m    = temp.m;
+        this.iPrimes = temp.iPrimes;
     }
 
     /**
@@ -191,25 +148,47 @@ public class MeuLinearProbingHashST<Key, Value> {
      * de "lazy deletion", se desejarmos.
      */
     public void put(Key key, Value val) {
-        // TAREFA: veja o método original e faça adaptação para que
-        //         a tabela seja redimensionada se o fator de carga
-        //         passar de alfaSup.
+        if (key == null) throw new IllegalArgumentException("first argument to put() is null");
+        if (val == null) {
+            delete(key);
+            return;
+        }
+        if (alpha() > alfaSup) resize(iPrimes+1);
+        int i;
+        for (i = hash(key); keys[i] != null; i = (i + 1) % m)
+            if (keys[i].equals(key)) {
+                vals[i] = val;
+                return;
+            }
+        keys[i] = key;
+        vals[i] = val;
+        n++;
     }
-
 
     // delete the key (and associated value) from the symbol table
     public void delete(Key key) {
-        // TAREFA: veja o método original e adapte para que a tabela 
-        //         seja redimensionada sempre que o fator de carga for menor que
-        //         alfaInf.
+        if (key == null) throw new IllegalArgumentException("argument to delete() is null");
+        if (!contains(key)) return;
+        int i = hash(key);
+        while (!key.equals(keys[i]))
+            i = (i + 1) % m;
+        keys[i] = null;
+        vals[i] = null;
+        i = (i + 1) % m;
+        while (keys[i] != null) {
+            Key   keyToRehash = keys[i];
+            Value valToRehash = vals[i];
+            keys[i] = null;
+            vals[i] = null;
+            n--;
+            put(keyToRehash, valToRehash);
+            i = (i + 1) % m;
+        }
+        n--;
+        if (n > 0 && alpha() < alfaInf) resize(iPrimes - 1);
+        assert check();
     }
 
-    /**
-     * return all of the keys as in Iterable
-     * Suponha que uma posição i da tabela está disponível se 
-     * vals[i] == null. Isso permite que seja utilizada uma estratégia 
-     * de "lazy deletion", se desejarmos.
-     */
     public Iterable<Key> keys() {
         Queue<Key> queue = new Queue<Key>();
         for (int i = 0; i < m; i++)
@@ -223,8 +202,20 @@ public class MeuLinearProbingHashST<Key, Value> {
      * integrity not maintained during a delete()
      */
     private boolean check() {
-        // TAREFA: veja o método original e adapte para verificar que
-        //         a tabela de hash está no máximo alfaSup% cheia.
+        // check that hash table is at most 50% full
+        if (alpha() > alfaSup) {
+            System.err.println("Hash table size m = " + m + "; array size n = " + n);
+            return false;
+        }
+        // check that each key in table can be found by get()
+        for (int i = 0; i < m; i++) {
+            if (keys[i] == null) continue;
+            else if (get(keys[i]) != vals[i]) {
+                System.err.println("get[" + keys[i] + "] = " + get(keys[i]) + "; vals[i] = " + vals[i]);
+                return false;
+            }
+        }
+        return true;
     }
 
     /********************************************************************
@@ -232,7 +223,6 @@ public class MeuLinearProbingHashST<Key, Value> {
      *
      *********************************************************************/
 
-    // retorna o tamanha da tabela de hash
     public int sizeST() {
         return m;
     } 
@@ -252,7 +242,19 @@ public class MeuLinearProbingHashST<Key, Value> {
      * ou seja, o número de posições visitadas da tabela de hash. 
      */ 
     public int maxCluster() {
-        // TAREFA
+        int max = 0, i = 0, tmpM;
+        while(i < m) {
+            tmpM = 0;
+            while(i < m && vals[i] != null){
+                tmpM++;
+                i++;
+            }
+            if(tmpM > max)
+                max = tmpM;
+            i++;
+        }
+        return max;
+
     }
 
     /** 
@@ -264,10 +266,21 @@ public class MeuLinearProbingHashST<Key, Value> {
      * 
      */ 
     public int numClusters() {
-        // TAREFA
+        int nC = 0, i = 0, tmpM;
+        while(i < m) {
+            tmpM = 0;
+            while(i < m && vals[i] != null){
+                tmpM++;
+                i++;
+            }
+            if(tmpM > 0)
+                nC++;
+            i++;
+        }
+        return nC;
+
     }
-    
-    
+
     /**
      * NOTA:
      * Proposição: Em uma tabela de hash com sondagem linear, m posições e
@@ -293,7 +306,18 @@ public class MeuLinearProbingHashST<Key, Value> {
      * ou seja, o número de posições visitadas da tabela de hash. 
      */
     public double averageSearchHit() {
-        // TAREFA
+        int sum, total = 0;
+        for (Key k : this.keys()){
+            sum = 0;
+            for (int i = hash(k); vals[i] != null; i = (i + 1) % m) {
+                sum++;
+                if (keys[i].equals(k))
+                    break;
+            }
+            total += sum;
+       }
+       double tmp = (double) total;
+        return tmp/n;
     }
 
     /**
@@ -305,7 +329,16 @@ public class MeuLinearProbingHashST<Key, Value> {
      * ou seja, o número de posições visitadas da tabela de hash. 
      */
     public double averageSearchMiss() {
-        // TAREFA
+        int nProbes = 0;
+        for (int i = 0; i < n; i++) {
+            int hash = StdRandom.uniform(m);
+            int sum = 0;
+            for (int j = hash; vals[j] != null; j=(j+1)%m, ++sum);
+            nProbes += sum;
+        }
+        double tmp = (double)n;
+        // WTF DUDE >.<
+        return 1 + nProbes/tmp;
     }
 
 
@@ -336,7 +369,7 @@ public class MeuLinearProbingHashST<Key, Value> {
         Stopwatch sw = new Stopwatch();
 
         // povoe a ST com palavras do arquivo
-        StdOut.println("Criando a LinearProbingingHashST com as palavras do arquivo '" + args[2] + "' ...");
+        StdOut.println("Criando a ALGS4 com as palavras do arquivo '" + args[2] + "' ...");
         while (!in.isEmpty()) {
             // Read and return the next line.
             String linha = in.readLine();
@@ -351,7 +384,7 @@ public class MeuLinearProbingHashST<Key, Value> {
             }
         }
         
-        StdOut.println("Hashing com LinearProbingingHashST");
+        StdOut.println("Hashing com ALGS4");
         StdOut.println("ST criada em " + sw.elapsedTime() + " segundos");
         StdOut.println("ST contém " + st.size() + " itens");
         in.close();
@@ -369,7 +402,7 @@ public class MeuLinearProbingHashST<Key, Value> {
         sw = new Stopwatch();
 
         // povoe  a ST com palavras do arquivo
-        StdOut.println("Criando a MeuLinearProbingingHashST com as palavras do arquivo '" + args[2] + "' ...");
+        StdOut.println("Criando a SUA com as palavras do arquivo '" + args[2] + "' ...");
         while (!in.isEmpty()) {
             // Read and return the next line.
             String linha = in.readLine();
@@ -390,7 +423,7 @@ public class MeuLinearProbingHashST<Key, Value> {
         int m = meuST.sizeST();
         double alfa = (double) n/m;
         int nClusters = meuST.numClusters();
-        StdOut.println("Hashing com MeuLinearProbingingHashST");
+        StdOut.println("Hashing com SUA");
         StdOut.println("ST criada em " + sw.elapsedTime() + " segundos");
         StdOut.println("ST contém " + n + " itens");
         StdOut.println("Tabela hash tem " + m + " posições");
