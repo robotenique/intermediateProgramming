@@ -9,10 +9,10 @@ import edu.princeton.cs.algs4.StdRandom;
 public class MeuLinearProbingHashST<Key, Value> {
     // NOTA: Esses valores são todas as possíveis dimensões da tabela de hash.
     private static final int[] PRIMES = {
-        7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
-        32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
-        8388593, 16777213, 33554393, 67108859, 134217689, 268435399,
-        536870909, 1073741789, 2147483647
+            7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
+            32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
+            8388593, 16777213, 33554393, 67108859, 134217689, 268435399,
+            536870909, 1073741789, 2147483647
     };
 
     private static final int INIT_CAPACITY = PRIMES[0];
@@ -42,16 +42,16 @@ public class MeuLinearProbingHashST<Key, Value> {
     }
     public MeuLinearProbingHashST(double alfaInf, double alfaSup) {
         this(INIT_CAPACITY, alfaInf, alfaSup);
-    } 
+    }
 
-    /** 
+    /**
      * Construtor.
      *
      * Cria uma tabela de hash vazia com PRIMES[iPrimes] posições sendo
      * que iPrimes >= 0 e
      *         PRIMES[iPrimes-1] < m <= PRIMES[iPrimes]
      * (suponha que PRIMES[-1] = 0).
-     * 
+     *
      * Além disso a tabela criada será tal que o fator de carga alfa
      * respeitará
      *
@@ -110,13 +110,13 @@ public class MeuLinearProbingHashST<Key, Value> {
     }
 
     public Value get(Key key) {
-        for (int i = hash(key); vals[i] != null; i = (i + 1) % m) 
+        for (int i = hash(key); vals[i] != null; i = (i + 1) % m)
             if (keys[i].equals(key))
                 return vals[i];
         return null;
     }
-    
-    /** 
+
+    /**
      *
      * Redimensiona a tabela de hash de modo que ela tenha PRIMES[k]
      * listas e reinsere todos os itens na nova tabela.
@@ -124,20 +124,25 @@ public class MeuLinearProbingHashST<Key, Value> {
      * Suponha que uma posição i da tabela está disponível se 
      * vals[i] == null. Isso permite que seja utilizada uma estratégia 
      * de "lazy deletion", se desejarmos.
-     * 
+     *
      * Assim, o índice k corresponde ao valor PRIMES[k] que será o novo 
      * tamanho da tabela.
      */
     private void resize(int k) {
-        int length = k < 0 ? 0 : PRIMES[k];
-        MeuLinearProbingHashST<Key, Value> temp = new MeuLinearProbingHashST<Key, Value>(length, alfaInf, alfaSup);
+        if(k < 0)
+            return;
+        MeuLinearProbingHashST<Key, Value> temp = new MeuLinearProbingHashST<Key, Value>(PRIMES[k], alfaInf, alfaSup);
+        /*StdOut.println("========================================");
+        StdOut.println("Resize - (k atual): "+this.iPrimes+" (m atual): "+this.m+" | (novo k): "+k+" (m) => "+length+" (n): "+this.n);*/
         for (int i = 0; i < m; i++)
-            if (keys[i] != null)
+            if (vals[i] != null)
                 temp.put(keys[i], vals[i]);
         this.keys = temp.keys;
         this.vals = temp.vals;
         this.m    = temp.m;
+        this.n = temp.n;
         this.iPrimes = temp.iPrimes;
+        //StdOut.println("========================================\n");
     }
 
     /**
@@ -153,9 +158,9 @@ public class MeuLinearProbingHashST<Key, Value> {
             delete(key);
             return;
         }
-        if (alpha() > alfaSup) resize(iPrimes+1);
+        if (n/(double)m > alfaSup) resize(iPrimes+1);
         int i;
-        for (i = hash(key); keys[i] != null; i = (i + 1) % m)
+        for (i = hash(key); vals[i] != null; i = (i + 1) % m)
             if (keys[i].equals(key)) {
                 vals[i] = val;
                 return;
@@ -178,15 +183,15 @@ public class MeuLinearProbingHashST<Key, Value> {
         while (keys[i] != null) {
             Key   keyToRehash = keys[i];
             Value valToRehash = vals[i];
-            keys[i] = null;
             vals[i] = null;
+            keys[i] = null;
             n--;
             put(keyToRehash, valToRehash);
             i = (i + 1) % m;
         }
         n--;
-        if (n > 0 && alpha() < alfaInf) resize(iPrimes - 1);
-        assert check();
+        if (n/(double)m < alfaInf)
+            resize(iPrimes-1);
     }
 
     public Iterable<Key> keys() {
@@ -225,22 +230,22 @@ public class MeuLinearProbingHashST<Key, Value> {
 
     public int sizeST() {
         return m;
-    } 
+    }
 
-    /** 
+    /**
      * maxCluster(): retorna o maior comprimento de um cluster.
      *
      * O custo médio de sondagem linear depende da maneira em que
      * as chaves são agrupadas em pedaços contínuos da tabela.
      * Esses pedaços são chamados de clusters.
      *
-     * Suponha que uma posição i da tabela está disponível se 
-     * vals[i] == null. Isso permite que seja utilizada uma estratégia 
+     * Suponha que uma posição i da tabela está disponível se
+     * vals[i] == null. Isso permite que seja utilizada uma estratégia
      * de "lazy deletion", se desejarmos.
-     * 
-     * O custo a que se refere ao número de sondagens (probes), 
-     * ou seja, o número de posições visitadas da tabela de hash. 
-     */ 
+     *
+     * O custo a que se refere ao número de sondagens (probes),
+     * ou seja, o número de posições visitadas da tabela de hash.
+     */
     public int maxCluster() {
         int max = 0, i = 0, tmpM;
         while(i < m) {
@@ -257,14 +262,14 @@ public class MeuLinearProbingHashST<Key, Value> {
 
     }
 
-    /** 
+    /**
      * numCluster(): retorna o número de clusters.
      *
-     * Suponha que uma posição i da tabela está disponível se 
-     * vals[i] == null. Isso permite que seja utilizada uma estratégia 
+     * Suponha que uma posição i da tabela está disponível se
+     * vals[i] == null. Isso permite que seja utilizada uma estratégia
      * de "lazy deletion", se desejarmos.
-     * 
-     */ 
+     *
+     */
     public int numClusters() {
         int nC = 0, i = 0, tmpM;
         while(i < m) {
@@ -287,11 +292,11 @@ public class MeuLinearProbingHashST<Key, Value> {
      *   n = alfa*m chaves, o número médio de sondagens (probes), supondo
      *   que a função de hashing satisfaz a hipótese do hashing uniforme, é
      *
-     *            0.5 * (1 + 1/(1-alfa)) 
+     *            0.5 * (1 + 1/(1-alfa))
      *
      *   para buscas bem-sucedidas e
      *
-     *            0.5 * (1 + a/(1-alfa)^2) 
+     *            0.5 * (1 + a/(1-alfa)^2)
      *
      *   para buscas malsucedidas.
      */
@@ -302,8 +307,8 @@ public class MeuLinearProbingHashST<Key, Value> {
      * bem-sucedida na tabela supondo que cada chave da tabela tem a
      * mesma probabilidade de ser buscada.
      *
-     * O custo a que se refere ao número de sondagens (probes), 
-     * ou seja, o número de posições visitadas da tabela de hash. 
+     * O custo a que se refere ao número de sondagens (probes),
+     * ou seja, o número de posições visitadas da tabela de hash.
      */
     public double averageSearchHit() {
         int sum, total = 0;
@@ -315,44 +320,41 @@ public class MeuLinearProbingHashST<Key, Value> {
                     break;
             }
             total += sum;
-       }
-       double tmp = (double) total;
+        }
+        double tmp = (double) total;
         return tmp/n;
     }
 
     /**
-     * averageSearchMiss(): retorna o custo médio de uma busca malsucedida 
-     * (que é também o custo de uma inserção) na tabela supondo que a função de hashing 
+     * averageSearchMiss(): retorna o custo médio de uma busca malsucedida
+     * (que é também o custo de uma inserção) na tabela supondo que a função de hashing
      * satisfaz a hipótese de hashing uniforme.
      *
-     * O custo a que se refere ao número de sondagens (probes), 
-     * ou seja, o número de posições visitadas da tabela de hash. 
+     * O custo a que se refere ao número de sondagens (probes),
+     * ou seja, o número de posições visitadas da tabela de hash.
      */
     public double averageSearchMiss() {
         int nProbes = 0;
-        for (int i = 0; i < n; i++) {
-            int hash = StdRandom.uniform(m);
-            int sum = 0;
-            for (int j = hash; vals[j] != null; j=(j+1)%m, ++sum);
+        for (int i = 0; i < m; i++) {
+            int sum = 1;
+            for (int j = i; vals[j] != null; j=(j+1)%m, ++sum);
             nProbes += sum;
         }
-        double tmp = (double)n;
-        // WTF DUDE >.<
-        return 1 + nProbes/tmp;
-    }
+        double tmp = (double)m;
+        return nProbes/tmp;}
 
 
-        
-   /***********************************************************************
-    *  Unit test client.
-    *  Altere à vontade, pois este método não será corrigido.
-    ***********************************************************************/
+
+    /***********************************************************************
+     *  Unit test client.
+     *  Altere à vontade, pois este método não será corrigido.
+     ***********************************************************************/
     public static void main(String[] args) {
         if (args.length != 3) {
             showUse();
             return;
         }
-        
+
         String s;
         double alfaInf = Double.parseDouble(args[0]);
         double alfaSup = Double.parseDouble(args[1]);
@@ -361,21 +363,23 @@ public class MeuLinearProbingHashST<Key, Value> {
         //=========================================================
         // Testa LinearProbingingHashST
         In in = new In(fileName);
-        
+
         // crie a ST
         LinearProbingHashST<String, Integer> st = new LinearProbingHashST<String, Integer>();
-        
+
         // dispare o cronometro
         Stopwatch sw = new Stopwatch();
 
         // povoe a ST com palavras do arquivo
         StdOut.println("Criando a ALGS4 com as palavras do arquivo '" + args[2] + "' ...");
+        Queue<String> q = new Queue<>();
         while (!in.isEmpty()) {
             // Read and return the next line.
             String linha = in.readLine();
             String[] chaves = linha.split("\\W+");
             for (int i = 0; i < chaves.length; i++) {
                 if (!st.contains(chaves[i])) {
+                    q.enqueue(chaves[i]);
                     st.put(chaves[i], 1);
                 }
                 else {
@@ -383,7 +387,7 @@ public class MeuLinearProbingHashST<Key, Value> {
                 }
             }
         }
-        
+
         StdOut.println("Hashing com ALGS4");
         StdOut.println("ST criada em " + sw.elapsedTime() + " segundos");
         StdOut.println("ST contém " + st.size() + " itens");
@@ -391,10 +395,10 @@ public class MeuLinearProbingHashST<Key, Value> {
 
         //=================================================================================
         StdOut.println("\n=============================================");
-        
+
         // reabra o arquivo
         in = new In(fileName);
-        
+
         // crie uma ST
         MeuLinearProbingHashST<String, Integer> meuST = new MeuLinearProbingHashST<String, Integer>(alfaInf, alfaSup);
 
@@ -416,7 +420,7 @@ public class MeuLinearProbingHashST<Key, Value> {
                 }
             }
         }
-        
+
         // sw.elapsedTime(): returns elapsed time (in seconds) since
         // this object was created.
         int n = meuST.size();
@@ -431,27 +435,37 @@ public class MeuLinearProbingHashST<Key, Value> {
         StdOut.printf("Número de clusters é %d (media = %.2f)\n", nClusters, (double) n / nClusters);
         StdOut.printf("Fator de carga (= n/m) = %.2f\n", (double) n/m);
         StdOut.printf("Custo médio de uma busca bem-sucedida = %.2f (%.2f)\n",
-                      meuST.averageSearchHit(), 0.5*(1+1/(1-alfa)));
+                meuST.averageSearchHit(), 0.5*(1+1/(1-alfa)));
         StdOut.printf("Custo médio de uma busca malsucedida = %.2f (%.2f)\n",
-                      meuST.averageSearchMiss(), 0.5*(1+1/((1-alfa)*(1-alfa))));
+                meuST.averageSearchMiss(), 0.5*(1+1/((1-alfa)*(1-alfa))));
 
         in.close();
-        
+
         // Hmm. Não custa dar uma verificada ;-)
         for (String key: st.keys()) {
             if (!st.get(key).equals(meuST.get(key))) {
                 StdOut.println("Opss... " + key + ": " + st.get(key) + " != " + meuST.get(key));
             }
         }
+
+
+        StdOut.println("=================================\nTESTANDO DELETE E RESIZE!");
+        StdOut.println("Tamanho inicial (m): "+meuST.sizeST()+", (n): "+meuST.size());
+       /* for(String str : q) {
+            meuST.delete(q.dequeue());
+            StdOut.println("Tamanho (n) : "+meuST.size()+ "Tamanho (m) : "+meuST.sizeST());
+        }*/
+
+
     }
 
 
     private static void showUse() {
         String msg = "Uso: meu_prompt> java MeuLinearProbingingHashST <alfa inf> <alfa sup> <nome arquivo>\n"
-            + "    <alfa inf>: limite inferior para o comprimento médio das listas (= fator de carga)\n"
-            + "    <alfa sup>: limite superior para o comprimento médio das listas (= fator de carga)\n"
-            + "    <nome arquivo>: nome de um arquivo com um texto para que uma ST seja\n"
-            + "                    criada com as palavras nesse texto.";
+                + "    <alfa inf>: limite inferior para o comprimento médio das listas (= fator de carga)\n"
+                + "    <alfa sup>: limite superior para o comprimento médio das listas (= fator de carga)\n"
+                + "    <nome arquivo>: nome de um arquivo com um texto para que uma ST seja\n"
+                + "                    criada com as palavras nesse texto.";
         StdOut.println(msg);
     }
 
