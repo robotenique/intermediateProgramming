@@ -15,7 +15,51 @@
     <favorites_list name="devJava" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="MeuTST.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MeuTST.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="436">
+              <caret line="290" column="15" lean-forward="false" selection-start-line="290" selection-start-column="15" selection-end-line="290" selection-end-column="15" />
+              <folding>
+                <element signature="method#MeuTST#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#contains#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#get#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#get#1;class#MeuTST#0" expanded="false" />
+                <element signature="docComment;method#put#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#put#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#put#1;class#MeuTST#0" expanded="false" />
+                <element signature="docComment;method#longestPrefixOf#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#longestPrefixOf#0;class#MeuTST#0" expanded="false" />
+                <element signature="docComment;method#keys#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#keys#0;class#MeuTST#0" expanded="false" />
+                <element signature="docComment;method#keysWithPrefix#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#keysWithPrefix#0;class#MeuTST#0" expanded="false" />
+                <element signature="docComment;class#KeyVal#0;class#MeuTST#0" expanded="false" />
+                <element signature="class#KeyVal#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#KeyVal#0;class#KeyVal#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#compareTo#0;class#KeyVal#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#keysWithPrefixByValue#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#collect#1;class#MeuTST#0" expanded="false" />
+                <element signature="method#keysThatMatch#0;class#MeuTST#0" expanded="false" />
+                <element signature="method#collect#2;class#MeuTST#0" expanded="false" />
+                <element signature="docComment;method#main#0;class#MeuTST#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutocompleteGUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AutocompleteGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="187" column="0" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -26,7 +70,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>path</find>
       <find>empty</find>
       <find>REC</find>
       <find>inter</find>
@@ -48,11 +91,15 @@
       <find>&gt;</find>
       <find>&lt;=</find>
       <find>Search</find>
-      <find>delete</find>
       <find>put(</find>
       <find>vals</find>
-      <find>delete(</find>
       <find>resize(</find>
+      <find>prefix</find>
+      <find>delete(</find>
+      <find>delete</find>
+      <find>match</find>
+      <find>keysWith</find>
+      <find>itens</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -75,6 +122,8 @@
         <option value="$PROJECT_DIR$/src/WordFinder.java" />
         <option value="$PROJECT_DIR$/src/MeuSeparateChainingHashST.java" />
         <option value="$PROJECT_DIR$/src/MeuLinearProbingHashST.java" />
+        <option value="$PROJECT_DIR$/src/AutocompleteGUI.java" />
+        <option value="$PROJECT_DIR$/src/MeuTST.java" />
       </list>
     </option>
   </component>
@@ -149,23 +198,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MeuSeparateChainingHashST">
+  <component name="RunManager" selected="Application.MeuTST">
     <configuration default="false" name="Percolation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Percolation" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="devJava" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="PercolationStats" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="PercolationStats" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -208,6 +243,20 @@
     </configuration>
     <configuration default="false" name="MeuSeparateChainingHashST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MeuSeparateChainingHashST" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="devJava" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="MeuTST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MeuTST" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -314,18 +363,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Percolation" />
-      <item index="1" class="java.lang.String" itemvalue="Application.PercolationStats" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Teste" />
-      <item index="3" class="java.lang.String" itemvalue="Application.KdTreeST" />
-      <item index="4" class="java.lang.String" itemvalue="Application.MeuSeparateChainingHashST" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Teste" />
+      <item index="2" class="java.lang.String" itemvalue="Application.KdTreeST" />
+      <item index="3" class="java.lang.String" itemvalue="Application.MeuSeparateChainingHashST" />
+      <item index="4" class="java.lang.String" itemvalue="Application.MeuTST" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.MeuSeparateChainingHashST" />
-        <item index="1" class="java.lang.String" itemvalue="Application.KdTreeST" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Teste" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Percolation" />
-        <item index="4" class="java.lang.String" itemvalue="Application.PercolationStats" />
+        <item index="0" class="java.lang.String" itemvalue="Application.MeuTST" />
+        <item index="1" class="java.lang.String" itemvalue="Application.MeuSeparateChainingHashST" />
+        <item index="2" class="java.lang.String" itemvalue="Application.KdTreeST" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Teste" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Percolation" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -358,6 +407,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3205269" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -371,7 +421,6 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39956093" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.50384194" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -385,13 +434,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="19" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/percolation_tests/progs/Percolation.java" />
-    <entry file="file://$PROJECT_DIR$/src/percolation_tests/dados/input2.txt" />
     <entry file="file://$PROJECT_DIR$/src/percolation_tests/progs/PercolationVisualizer.java" />
     <entry file="file://$PROJECT_DIR$/src/Percolation.java" />
     <entry file="file://$PROJECT_DIR$/src/percolation_tests/dados/input4.txt" />
@@ -529,13 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/MaxPQ.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4750">
-          <caret line="44" column="23" lean-forward="true" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/util/HashSet.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -564,14 +604,56 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="14" column="45" lean-forward="true" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/MaxPQ.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-746">
+          <caret line="256" column="32" lean-forward="true" selection-start-line="256" selection-start-column="32" selection-end-line="256" selection-end-column="32" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#MeuLinearProbingHashST#3;class#MeuLinearProbingHashST#0" expanded="false" />
-            <element signature="method#alpha#0;class#MeuLinearProbingHashST#0" expanded="false" />
-            <element signature="method#calculatePRIMESpos#0;class#MeuLinearProbingHashST#0" expanded="false" />
-            <element signature="method#bSearch#0;class#MeuLinearProbingHashST#0" expanded="false" />
-            <element signature="method#get#0;class#MeuLinearProbingHashST#0" expanded="false" />
-            <element signature="docComment;method#resize#0;class#MeuLinearProbingHashST#0" expanded="false" />
+            <element signature="e#2515#2516#0" expanded="false" />
+            <element signature="e#2538#2539#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutocompleteGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="187" column="0" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MeuTST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="290" column="15" lean-forward="false" selection-start-line="290" selection-start-column="15" selection-end-line="290" selection-end-column="15" />
+          <folding>
+            <element signature="method#MeuTST#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#contains#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#get#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#get#1;class#MeuTST#0" expanded="false" />
+            <element signature="docComment;method#put#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#put#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#put#1;class#MeuTST#0" expanded="false" />
+            <element signature="docComment;method#longestPrefixOf#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#longestPrefixOf#0;class#MeuTST#0" expanded="false" />
+            <element signature="docComment;method#keys#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#keys#0;class#MeuTST#0" expanded="false" />
+            <element signature="docComment;method#keysWithPrefix#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#keysWithPrefix#0;class#MeuTST#0" expanded="false" />
+            <element signature="docComment;class#KeyVal#0;class#MeuTST#0" expanded="false" />
+            <element signature="class#KeyVal#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#KeyVal#0;class#KeyVal#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#compareTo#0;class#KeyVal#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#keysWithPrefixByValue#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#collect#1;class#MeuTST#0" expanded="false" />
+            <element signature="method#keysThatMatch#0;class#MeuTST#0" expanded="false" />
+            <element signature="method#collect#2;class#MeuTST#0" expanded="false" />
+            <element signature="docComment;method#main#0;class#MeuTST#0" expanded="false" />
           </folding>
         </state>
       </provider>
