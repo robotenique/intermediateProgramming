@@ -6,32 +6,65 @@ import edu.princeton.cs.algs4.StdOut;
 import java.awt.Color;
 
 class Pos{
-    public int x;
-    public int y;
+    int x;
+    int y;
     private static int width;
     private static int height;
     private static int diagW;
     private static int diagH;
-    public static void setWidth(int w) {
+    static void setWidth(int w) {
         width = w;
         Pos.diagW = Pos.width - 1;
     }
-    public static void setHeight(int h) {
+    static void setHeight(int h) {
         height = h;
         Pos.diagH = 0;
     }
-    public Pos(int x, int y) {
+    static void setDiagW(int d){
+        Pos.diagW = d;
+    }
+    static void setDiagH(int d){
+        Pos.diagH = d;
+    }
+    Pos(int x, int y) {
         this.x = x;
         this.y = y;
     }
     private boolean canGoDown() {
         return (x+1 < Pos.width && y+1 < Pos.height);
     }
+    private boolean canGoUp() {
+        return (x+1 < Pos.width && y-1 >= 0);
+    }
     private static boolean isWithin(int x, int y){
         return x >= 0 && x < Pos.width && y >= 0 && y < Pos.height;
     }
-
-    public Pos getNext() {
+    Pos getNextH() {
+        // Return the next position in topological order (Horizontally)
+        if(!Pos.isSNode(this) && canGoUp()) {
+            return new Pos(x + 1, y - 1);
+        }
+        else {
+            if(this.y <= Pos.height - 1) { // If it's inside the image matrix (not a virtual node)
+                Pos.diagH++;
+                if (Pos.diagH >= Pos.height) {
+                    Pos.diagH = Pos.height - 1;
+                    Pos.diagW++;
+                    if (Pos.diagW >= Pos.width)
+                        return null;
+                }
+                StdOut.print("EAE MEN...");
+                return new Pos(Pos.diagW, Pos.diagH);
+            }
+            else {
+                if (Pos.isSNode(this)) // Start Node (S)
+                    return new Pos(0, 0);
+                else // Terminal Node (T)
+                    return null;
+            }
+        }
+    }
+    Pos getNext() {
         // Returns the next position in topological order
         if(canGoDown()) {
             return new Pos(x + 1, y + 1);
@@ -56,7 +89,7 @@ class Pos{
         }
     }
 
-    public static Queue<Pos> getChild(Pos p) {
+    static Queue<Pos> getChild(Pos p) {
         // Get all the childs of a current Position
         Queue<Pos> ret = new Queue<>();
         if(Pos.isSNode(p)) {
@@ -79,10 +112,33 @@ class Pos{
         return ret;
     }
 
-    public static boolean isSNode(Pos p) {
+    static Queue<Pos> getChildH(Pos p) {
+        // Get all the childs of a current Position
+        Queue<Pos> ret = new Queue<>();
+        if(Pos.isSNode(p)) {
+            // The first column of the matrix is child of the S node
+            for (int i = Pos.height - 1; i >= 0; i--)
+                ret.enqueue(new Pos(0, i));
+            return ret;
+        }
+        else if(Pos.isTNode(p))  // The T node has no child
+            return null;
+        else if(p.x == Pos.width - 1) { // The last line has only 1 child : the T node
+            ret.enqueue(new Pos(1, Pos.height));
+            return ret;
+        }
+        // Normal nodes can have up to 3 childs
+        int[][] cand = new int[][]{{p.x+1, p.y-1}, {p.x+1, p.y}, {p.x+1, p.y+1}};
+        for (int[] aCand : cand)
+            if (isWithin(aCand[0], aCand[1]))
+                ret.enqueue(new Pos(aCand[0], aCand[1]));
+        return ret;
+    }
+
+    static boolean isSNode(Pos p) {
         return p.y == Pos.height && p.x == 0;
     }
-    public static boolean isTNode(Pos p) {
+    static boolean isTNode(Pos p) {
         return p.y == Pos.height && p.x == 1;
     }
 }
@@ -125,8 +181,6 @@ public class SeamCarver {
         double calcDelta = deltaDiff(xBorder(x, y)) + deltaDiff(yBorder(x, y));
         return Math.sqrt(calcDelta);
     }
-    // sequence of indices for horizontal seam
-    public   int[] findHorizontalSeam() {   return  null; }
 
     // Helper method
     private double energyP(int x, int y){
@@ -140,51 +194,90 @@ public class SeamCarver {
         return Math.sqrt(calcDelta);
     }
 
-    // sequence of indices for vertical seam
-    public   int[] findVerticalSeam()   {
-        Queue<Pos> q;
+    private void debugMatrix(){
+        for (int i = 0; i < width(); i++) {
+            for (int j = 0; j < height() + 1; j++) {
+                    StdOut.print("("+i+","+j+") ["+distTo[j][i]+"]");
+            }
+            StdOut.println("");
+        }
+    }
+
+    private void relax(Pos w, Pos v, double[][] distTo, Pos[][] edgeTo) {
+        //StdOut.println("distTo[("+w.x+", "+w.y+")] = "+distTo[w.y][w.x]+" distTo[("+v.x+", "+v.y+")] + peso = "+(distTo[v.y][v.x] + energyP(w.x, w.y)));
+        if(distTo[w.y][w.x] > distTo[v.y][v.x] + energyP(w.x, w.y)){
+            distTo[w.y][w.x] = distTo[v.y][v.x] + energyP(w.x, w.y);
+            edgeTo[w.y][w.x] = v;
+        }
+    }
+
+    private int[] getPath(Pos T) {
+        Stack<Pos> s = new Stack<>();
+        for (Pos at = edgeTo[T.y][T.x]; at != null; at = edgeTo[at.y][at.x])
+            s.push(at);
+        s.pop();
+        int[] ret = new int[height()];
+        for (int j = 0; !s.isEmpty(); j++)
+                ret[j] = s.pop().x;
+        return ret;
+    }
+
+    private void initArr(){
         Pos.setHeight(height());
         Pos.setWidth(width());
         energyM = new double[height() + 1][width()];
         distTo = new double[height() + 1][width()];
         edgeTo = new Pos[height() + 1][width()];
-        for (int i = 0; i < width() - 1; i++) {
+        for (int i = 0; i < width(); i++) {
             for (int j = 0; j < height() + 1; j++) {
                 energyM[j][i] = energyP(i, j);
                 distTo[j][i] = Double.POSITIVE_INFINITY;
             }
         }
         edgeTo[height()][0] = null; // The S node don't come from anything!
-        Pos v = new Pos(0, height());
-        while(v != null){
-            q = Pos.getChild(v);
-            if(q != null){
-                for(Pos w: q){
-                    relax(w, v, distTo, edgeTo);
-                }
-            }
-            v = v.getNext();
-        }
-        showPath(new Pos(1, height())); // Show path from S to the T node
-        System.exit(0);
-        return null;
+        distTo[height()][0] = 0;    // The distance to S is 0
     }
 
-    private void showPath(Pos T) {
+    // sequence of indices for vertical seam
+    public   int[] findVerticalSeam()   {
+        Queue<Pos> q;
+        initArr();
+        for (Pos v = new Pos(0, height()); v != null; v = v.getNext()){
+            q = Pos.getChild(v);
+            if(q != null)
+                for (Pos w : q)
+                    relax(w, v, distTo, edgeTo);
+        }
+        return getPath(new Pos(1, height()));
+    }
+
+    // sequence of indices for horizontal seam
+    public   int[] findHorizontalSeam() {
+        Queue<Pos> q;
+        initArr();
+        // Important!
+        Pos.setDiagH(0);
+        Pos.setDiagW(0);
+        for (Pos v = new Pos(0, height()); v != null; v = v.getNextH()){
+            q = Pos.getChildH(v);
+            StdOut.println("=========RELAXANDO V("+v.x+", "+v.y+") : ");
+            if(q != null)
+                for (Pos w : q)
+                    relax(w, v, distTo, edgeTo);
+        }
+        return getPathH(new Pos(1, height()));
+    }
+
+    private int[] getPathH(Pos T) {
         Stack<Pos> s = new Stack<>();
         for (Pos at = edgeTo[T.y][T.x]; at != null; at = edgeTo[at.y][at.x])
             s.push(at);
-
-        for(Pos p : s)
-            StdOut.print("-> ("+p.y+","+p.x+")");
-        StdOut.println("");
-    }
-
-    private void relax(Pos w, Pos v, double[][] distTo, Pos[][] edgeTo) {
-        if(distTo[w.y][w.x] > distTo[v.y][v.x] + energyP(w.x, w.y)){
-            distTo[w.y][w.x] = distTo[v.y][v.x] + energyP(w.x, w.y);
-            edgeTo[w.y][w.x] = v;
-        }
+        if(!s.isEmpty())
+            s.pop();
+        int[] ret = new int[width()];
+        for (int j = 0; !s.isEmpty(); j++)
+            ret[j] = s.pop().y;
+        return ret;
     }
 
     // remove horizontal seam from current picture
@@ -194,7 +287,10 @@ public class SeamCarver {
     // do unit testing of this class
     public static void main(String[] args)  {
         SeamCarver sc = new SeamCarver(new Picture("3x4.png"));
-        sc.findVerticalSeam();
+        int [] scH = sc.findHorizontalSeam();
+        for (int i = 0; i < scH.length; i++) {
+            StdOut.print(scH[i]+" ,");
+        }
     }
 
 }
