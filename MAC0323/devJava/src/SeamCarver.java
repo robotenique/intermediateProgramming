@@ -53,7 +53,6 @@ class Pos{
                     if (Pos.diagW >= Pos.width)
                         return null;
                 }
-                StdOut.print("EAE MEN...");
                 return new Pos(Pos.diagW, Pos.diagH);
             }
             else {
@@ -88,7 +87,6 @@ class Pos{
             }
         }
     }
-
     static Queue<Pos> getChild(Pos p) {
         // Get all the childs of a current Position
         Queue<Pos> ret = new Queue<>();
@@ -111,7 +109,6 @@ class Pos{
                 ret.enqueue(new Pos(aCand[0], aCand[1]));
         return ret;
     }
-
     static Queue<Pos> getChildH(Pos p) {
         // Get all the childs of a current Position
         Queue<Pos> ret = new Queue<>();
@@ -134,7 +131,6 @@ class Pos{
                 ret.enqueue(new Pos(aCand[0], aCand[1]));
         return ret;
     }
-
     static boolean isSNode(Pos p) {
         return p.y == Pos.height && p.x == 0;
     }
@@ -145,7 +141,6 @@ class Pos{
 
 public class SeamCarver {
     private Picture pic;
-    private double[][] energyM;
     private double[][] distTo;
     private Pos[][]     edgeTo;
     // create a seam carver object based on the given picture
@@ -182,62 +177,6 @@ public class SeamCarver {
         return Math.sqrt(calcDelta);
     }
 
-    // Helper method
-    private double energyP(int x, int y){
-        // Energy at Source or Terminal node is 0
-        if(Pos.isSNode(new Pos(x, y)) || Pos.isTNode(new Pos(x, y)))
-            return 0;
-        // Outer bounds has no energy
-        if (x < 0 || x > width() - 1 || y < 0 || y > height() - 1)
-            return 0;
-        double calcDelta = deltaDiff(xBorder(x, y)) + deltaDiff(yBorder(x, y));
-        return Math.sqrt(calcDelta);
-    }
-
-    private void debugMatrix(){
-        for (int i = 0; i < width(); i++) {
-            for (int j = 0; j < height() + 1; j++) {
-                    StdOut.print("("+i+","+j+") ["+distTo[j][i]+"]");
-            }
-            StdOut.println("");
-        }
-    }
-
-    private void relax(Pos w, Pos v, double[][] distTo, Pos[][] edgeTo) {
-        //StdOut.println("distTo[("+w.x+", "+w.y+")] = "+distTo[w.y][w.x]+" distTo[("+v.x+", "+v.y+")] + peso = "+(distTo[v.y][v.x] + energyP(w.x, w.y)));
-        if(distTo[w.y][w.x] > distTo[v.y][v.x] + energyP(w.x, w.y)){
-            distTo[w.y][w.x] = distTo[v.y][v.x] + energyP(w.x, w.y);
-            edgeTo[w.y][w.x] = v;
-        }
-    }
-
-    private int[] getPath(Pos T) {
-        Stack<Pos> s = new Stack<>();
-        for (Pos at = edgeTo[T.y][T.x]; at != null; at = edgeTo[at.y][at.x])
-            s.push(at);
-        s.pop();
-        int[] ret = new int[height()];
-        for (int j = 0; !s.isEmpty(); j++)
-                ret[j] = s.pop().x;
-        return ret;
-    }
-
-    private void initArr(){
-        Pos.setHeight(height());
-        Pos.setWidth(width());
-        energyM = new double[height() + 1][width()];
-        distTo = new double[height() + 1][width()];
-        edgeTo = new Pos[height() + 1][width()];
-        for (int i = 0; i < width(); i++) {
-            for (int j = 0; j < height() + 1; j++) {
-                energyM[j][i] = energyP(i, j);
-                distTo[j][i] = Double.POSITIVE_INFINITY;
-            }
-        }
-        edgeTo[height()][0] = null; // The S node don't come from anything!
-        distTo[height()][0] = 0;    // The distance to S is 0
-    }
-
     // sequence of indices for vertical seam
     public   int[] findVerticalSeam()   {
         Queue<Pos> q;
@@ -260,7 +199,6 @@ public class SeamCarver {
         Pos.setDiagW(0);
         for (Pos v = new Pos(0, height()); v != null; v = v.getNextH()){
             q = Pos.getChildH(v);
-            StdOut.println("=========RELAXANDO V("+v.x+", "+v.y+") : ");
             if(q != null)
                 for (Pos w : q)
                     relax(w, v, distTo, edgeTo);
@@ -268,6 +206,77 @@ public class SeamCarver {
         return getPathH(new Pos(1, height()));
     }
 
+    // remove horizontal seam from current picture
+    public    void removeHorizontalSeam(int[] seam)  {
+        //TODO: fix this thing
+        Picture temp = new Picture(width(), height() - 1);
+        for (int i = 0; i < width(); i++) {
+            int j = 0, h = 0;
+            while(seam[i] != j) {
+                temp.set(i, h, pic.get(i, j));
+                j++;
+                h++;
+            }
+            j++;
+            while(j < height()){
+                temp.set(i, h, pic.get(i, j));
+                j++;
+                h++;
+            }
+        }
+        pic = temp;
+    }
+    // remove vertical seam from current picture
+    public    void removeVerticalSeam(int[] seam) {
+        Picture temp = new Picture(width() - 1, height());
+        for (int i = 0; i < height(); i++) {
+            int j = 0, w = 0;
+            while(seam[i] != j) {
+                temp.set(w, i, pic.get(j, i));
+                j++;
+                w++;
+            }
+            j++;
+            while(j < width()){
+                temp.set(w, i, pic.get(j, i));
+                j++;
+                w++;
+            }
+        }
+        pic = temp;
+    }
+
+    //----------- Helper methods ----------- //
+    // get the energy of a given coordinate, but accepts anything!
+    private double energyP(int x, int y){
+        // Energy at Source or Terminal node is 0
+        if(Pos.isSNode(new Pos(x, y)) || Pos.isTNode(new Pos(x, y)))
+            return 0;
+        // Outer bounds has no energy
+        if (x < 0 || x > width() - 1 || y < 0 || y > height() - 1)
+            return 0;
+        double calcDelta = deltaDiff(xBorder(x, y)) + deltaDiff(yBorder(x, y));
+        return Math.sqrt(calcDelta);
+    }
+    // Relax a given v->w edge
+    private void relax(Pos w, Pos v, double[][] distTo, Pos[][] edgeTo) {
+        if(distTo[w.y][w.x] > distTo[v.y][v.x] + energyP(w.x, w.y)){
+            distTo[w.y][w.x] = distTo[v.y][v.x] + energyP(w.x, w.y);
+            edgeTo[w.y][w.x] = v;
+        }
+    }
+    // Returns the VERTICAL path in correct order
+    private int[] getPath(Pos T) {
+        Stack<Pos> s = new Stack<>();
+        for (Pos at = edgeTo[T.y][T.x]; at != null; at = edgeTo[at.y][at.x])
+            s.push(at);
+        s.pop();
+        int[] ret = new int[height()];
+        for (int j = 0; !s.isEmpty(); j++)
+            ret[j] = s.pop().x;
+        return ret;
+    }
+    // Returns the HORIZONTAL path in correct
     private int[] getPathH(Pos T) {
         Stack<Pos> s = new Stack<>();
         for (Pos at = edgeTo[T.y][T.x]; at != null; at = edgeTo[at.y][at.x])
@@ -279,18 +288,22 @@ public class SeamCarver {
             ret[j] = s.pop().y;
         return ret;
     }
+    // Initializes the matrices used in the seam detection
+    private void initArr(){
+        Pos.setHeight(height());
+        Pos.setWidth(width());
+        distTo = new double[height() + 1][width()];
+        edgeTo = new Pos[height() + 1][width()];
+        for (int i = 0; i < width(); i++)
+            for (int j = 0; j < height() + 1; j++)
+                distTo[j][i] = Double.POSITIVE_INFINITY;
+        edgeTo[height()][0] = null; // The S node don't come from anything!
+        distTo[height()][0] = 0;    // The distance to S is 0
+    }
 
-    // remove horizontal seam from current picture
-    public    void removeHorizontalSeam(int[] seam)  {}
-    // remove vertical seam from current picture
-    public    void removeVerticalSeam(int[] seam) {}
     // do unit testing of this class
     public static void main(String[] args)  {
-        SeamCarver sc = new SeamCarver(new Picture("3x4.png"));
-        int [] scH = sc.findHorizontalSeam();
-        for (int i = 0; i < scH.length; i++) {
-            StdOut.print(scH[i]+" ,");
-        }
+        SeamCarver sc = new SeamCarver(new Picture("inner.jpg"));
     }
 
 }
