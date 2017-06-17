@@ -145,6 +145,8 @@ public class SeamCarver {
     private Pos[][]     edgeTo;
     // create a seam carver object based on the given picture
     public SeamCarver(Picture picture) {
+        if(picture == null)
+            throw new java.lang.NullPointerException("Picture is null!");
         pic = new Picture(picture);
     }
     private int[][] xBorder(int x, int y) {
@@ -205,10 +207,43 @@ public class SeamCarver {
         }
         return getPathH(new Pos(1, height()));
     }
+    // Check if a seam is invalid
+    private boolean isInvalidSeam(int[] seam, boolean isHorizontal){
+        if(isHorizontal) {
+            if(seam.length != width()) return true;
+            for (int i = 0; i < seam.length - 1; i++) {
+                int aSeam = seam[i];
+                if (aSeam < 0 || aSeam > height() - 1)
+                    return true;
+                if (Math.abs(aSeam - seam[i + 1]) > 1)
+                    return true;
+            }
+            if (seam[seam.length - 1] < 0 || seam[seam.length - 1] > height() - 1)
+                return true;
+        }
+        else{
+            if(seam.length != height()) return true;
+            for (int i = 0; i < seam.length - 1; i++) {
+                int aSeam = seam[i];
+                if (aSeam < 0 || aSeam > width() - 1)
+                    return true;
+                if (Math.abs(aSeam - seam[i + 1]) > 1)
+                    return true;
+            }
+            if (seam[seam.length - 1] < 0 || seam[seam.length - 1] > width() - 1)
+                return true;
 
+        }
+        return false;
+    }
     // remove horizontal seam from current picture
     public    void removeHorizontalSeam(int[] seam)  {
-        //TODO: fix this thing
+        if(seam == null)
+            throw new java.lang.NullPointerException("seam is null!");
+        if(height() == 1 || width() == 1)
+            throw new java.lang.IllegalArgumentException("Picture height or width is 1!");
+        if(isInvalidSeam(seam, true))
+            throw new java.lang.IllegalArgumentException("The seam is invalid!!");
         Picture temp = new Picture(width(), height() - 1);
         for (int i = 0; i < width(); i++) {
             int j = 0, h = 0;
@@ -228,6 +263,12 @@ public class SeamCarver {
     }
     // remove vertical seam from current picture
     public    void removeVerticalSeam(int[] seam) {
+        if(seam == null)
+            throw new java.lang.NullPointerException("seam is null!");
+        if(height() == 1 || width() == 1)
+            throw new java.lang.IllegalArgumentException("Picture height or width is 1!");
+        if(isInvalidSeam(seam, false))
+            throw new java.lang.IllegalArgumentException("The seam is invalid!!");
         Picture temp = new Picture(width() - 1, height());
         for (int i = 0; i < height(); i++) {
             int j = 0, w = 0;
