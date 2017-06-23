@@ -22,6 +22,7 @@ class EntryData{
     }
 
 }
+
 public class CBSPath {
     int n, m, k;
     EntryData[] flights;
@@ -52,18 +53,30 @@ public class CBSPath {
 
     public void cbsAI() {
         EdgeWeightedDigraph graph = new EdgeWeightedDigraph(n);
-        for(String k : cityMap.keys()) {
-            StdOut.println("CIDADE "+k+" ["+cityMap.get(k)+"]");
-        }
-        for(EntryData f : flights) {
-            StdOut.print("Adicionando ["+f.from+" ---> "+f.to+"  ("+f.time+")]");
-            StdOut.println("   ||   "+cityMap.get(f.from)+" ,"+ cityMap.get(f.to));
+        BST<String, Integer> safeSpot = new BST<>();
+        for(EntryData f : flights)
             graph.addEdge(new DirectedEdge(cityMap.get(f.from), cityMap.get(f.to), f.time));
-        }
-        StdOut.println(graph);
+        DijkstraSP[] execDijkstras = new DijkstraSP[k];
+        DijkstraSP mpDijkstra = new DijkstraSP(graph, cityMap.get(mpCity));
+        for (int i = 0; i < k; i++)
+            execDijkstras[i] = new DijkstraSP(graph, cityMap.get(startCBS[i]));
+        for(String city : cityMap.keys())
+            if(maxDist(execDijkstras, cityMap.get(city)) < mpDijkstra.distTo(cityMap.get(city)))
+                safeSpot.put(city, 0);
+        if(safeSpot.size() > 0)
+            for(String c: safeSpot.keys())
+                StdOut.println(c);
+        else
+            StdOut.println("VENHA COMIGO PARA CURITIBA");
     }
 
-
+    private double maxDist(DijkstraSP[] paths, int city) {
+        double maxDist = 0;
+        for(DijkstraSP dsp : paths)
+            if(maxDist < dsp.distTo(city))
+                maxDist = dsp.distTo(city);
+        return maxDist;
+    }
 
     public static void main(String[] args) {
         int n, m, k;
@@ -88,8 +101,8 @@ public class CBSPath {
         for (int i = 0; i < k; i++)
             startCBS[i] = StdIn.readString();
         mpCity = StdIn.readString();
-        CBSPath cbsp = new CBSPath(n, m, k, flights, startCBS, mpCity, cities);
-        cbsp.cbsAI();
+        CBSPath saveCBS = new CBSPath(n, m, k, flights, startCBS, mpCity, cities);
+        saveCBS.cbsAI();
         //StdOut.println("N = "+n+" Set size = "+cities.size());
         //EntryData.testEntry(n, m, k, flights, startCBS, mpCity);
 
