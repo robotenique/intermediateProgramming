@@ -16,32 +16,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SeamCarver.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/SeamCarver.java">
+      <file leaf-file-name="CBSPaths.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/CBSPaths.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="266" column="34" lean-forward="true" selection-start-line="266" selection-start-column="34" selection-end-line="266" selection-end-column="34" />
+            <state relative-caret-position="566">
+              <caret line="96" column="39" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="class#Pos#0" expanded="false" />
-                <element signature="method#setWidth#0;class#Pos#0" expanded="false" />
-                <element signature="method#setHeight#0;class#Pos#0" expanded="false" />
-                <element signature="method#Pos#0;class#Pos#0" expanded="false" />
-                <element signature="method#getNextH#0;class#Pos#0" expanded="false" />
-                <element signature="method#getNext#0;class#Pos#0" expanded="false" />
-                <element signature="method#getChild#0;class#Pos#0" expanded="false" />
-                <element signature="method#getChildH#0;class#Pos#0" expanded="false" />
-                <element signature="method#xBorder#0;class#SeamCarver#0" expanded="false" />
-                <element signature="method#yBorder#0;class#SeamCarver#0" expanded="false" />
-                <element signature="method#deltaDiff#0;class#SeamCarver#0" expanded="false" />
-                <element signature="method#findVerticalSeam#0;class#SeamCarver#0" expanded="false" />
-                <element signature="method#findHorizontalSeam#0;class#SeamCarver#0" expanded="false" />
-                <element signature="method#isInvalidSeam#0;class#SeamCarver#0" expanded="false" />
-                <element signature="method#energyP#0;class#SeamCarver#0" expanded="false" />
-                <element signature="method#relax#0;class#SeamCarver#0" expanded="false" />
-                <element signature="method#getPath#0;class#SeamCarver#0" expanded="false" />
-                <element signature="method#getPathH#0;class#SeamCarver#0" expanded="false" />
-                <element signature="method#initArr#0;class#SeamCarver#0" expanded="false" />
+                <element signature="method#CBSPaths#0;class#CBSPaths#0" expanded="false" />
+                <element signature="method#prepareST#0;class#CBSPaths#0" expanded="false" />
+                <element signature="method#maxDist#0;class#CBSPaths#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -58,7 +42,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>resize</find>
       <find>alfa</find>
       <find>&gt;=</find>
       <find>&gt;</find>
@@ -80,7 +63,6 @@
       <find>de</find>
       <find>del</find>
       <find>MeuBST</find>
-      <find>get</find>
       <find>rgb</find>
       <find>getRG</find>
       <find>getRGBC</find>
@@ -88,6 +70,8 @@
       <find>StdO</find>
       <find>overla</find>
       <find>print</find>
+      <find>get</find>
+      <find>toS</find>
     </findStrings>
     <replaceStrings>
       <replace>Node</replace>
@@ -122,6 +106,8 @@
         <option value="$PROJECT_DIR$/src/PrintEnergy.java" />
         <option value="$PROJECT_DIR$/src/ShowSeams.java" />
         <option value="$PROJECT_DIR$/src/SeamCarver.java" />
+        <option value="$PROJECT_DIR$/src/CBSPath.java" />
+        <option value="$PROJECT_DIR$/src/CBSPaths.java" />
       </list>
     </option>
   </component>
@@ -145,8 +131,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -175,11 +159,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../algs4.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EP6/Subset.java" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -196,21 +182,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MeuBST">
-    <configuration default="false" name="Teste" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Teste" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="devJava" />
-      <envs />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Application.CBSPaths">
     <configuration default="false" name="KdTreeST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="KdTreeST" />
       <option name="VM_PARAMETERS" />
@@ -255,6 +227,20 @@
     </configuration>
     <configuration default="false" name="MeuBST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MeuBST" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="devJava" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="CBSPaths" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CBSPaths" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -360,19 +346,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.Teste" />
-      <item index="1" class="java.lang.String" itemvalue="Application.KdTreeST" />
-      <item index="2" class="java.lang.String" itemvalue="Application.MeuSeparateChainingHashST" />
-      <item index="3" class="java.lang.String" itemvalue="Application.MeuTST" />
-      <item index="4" class="java.lang.String" itemvalue="Application.MeuBST" />
+      <item index="0" class="java.lang.String" itemvalue="Application.KdTreeST" />
+      <item index="1" class="java.lang.String" itemvalue="Application.MeuSeparateChainingHashST" />
+      <item index="2" class="java.lang.String" itemvalue="Application.MeuTST" />
+      <item index="3" class="java.lang.String" itemvalue="Application.MeuBST" />
+      <item index="4" class="java.lang.String" itemvalue="Application.CBSPaths" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.MeuBST" />
-        <item index="1" class="java.lang.String" itemvalue="Application.MeuTST" />
-        <item index="2" class="java.lang.String" itemvalue="Application.MeuSeparateChainingHashST" />
-        <item index="3" class="java.lang.String" itemvalue="Application.KdTreeST" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Teste" />
+        <item index="0" class="java.lang.String" itemvalue="Application.CBSPaths" />
+        <item index="1" class="java.lang.String" itemvalue="Application.MeuBST" />
+        <item index="2" class="java.lang.String" itemvalue="Application.MeuTST" />
+        <item index="3" class="java.lang.String" itemvalue="Application.MeuSeparateChainingHashST" />
+        <item index="4" class="java.lang.String" itemvalue="Application.KdTreeST" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -412,8 +398,8 @@
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10548523" sideWeight="0.42041713" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10548523" sideWeight="0.57958287" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16455697" sideWeight="0.4061471" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16455697" sideWeight="0.59385294" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39956093" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.50384194" order="3" side_tool="true" content_ui="tabs" />
@@ -432,30 +418,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="24" />
+      <option name="time" value="25" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/percolation_tests/progs/PercolationVisualizer.java" />
-    <entry file="file://$PROJECT_DIR$/src/percolation_tests/progs/Percolation.java" />
-    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/Stopwatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="74" column="58" lean-forward="true" selection-start-line="68" selection-start-column="8" selection-end-line="74" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PercolationStats.java" />
-    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/WeightedQuickUnionUF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="82" column="14" lean-forward="true" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Percolation.java" />
-    <entry file="file://$PROJECT_DIR$/src/PercolationVisualizer.java" />
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/lang/Iterable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
@@ -570,13 +537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/LinearProbingHashST.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="130" column="20" lean-forward="false" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MeuLinearProbingHashST.java" />
     <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/MaxPQ.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -604,11 +564,7 @@
     <entry file="file://$PROJECT_DIR$/src/MeuBST.java" />
     <entry file="file://$PROJECT_DIR$/src/MinhaBST.java" />
     <entry file="file://$PROJECT_DIR$/src/MinhaRBT.java" />
-    <entry file="file://$PROJECT_DIR$/src/3x4.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/3x4.png" />
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/awt/Color.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -630,38 +586,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PrintEnergy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ShowEnergy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="24" column="32" lean-forward="false" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SCUtility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="79" column="13" lean-forward="false" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ShowSeams.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="31" column="36" lean-forward="false" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PrintEnergy.java" />
+    <entry file="file://$PROJECT_DIR$/src/ShowEnergy.java" />
+    <entry file="file://$PROJECT_DIR$/src/SCUtility.java" />
+    <entry file="file://$PROJECT_DIR$/src/ShowSeams.java" />
     <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/Picture.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
@@ -669,31 +597,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SeamCarver.java">
+    <entry file="file://$PROJECT_DIR$/src/SeamCarver.java" />
+    <entry file="file://$PROJECT_DIR$/../EP6/Subset.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="266" column="34" lean-forward="true" selection-start-line="266" selection-start-column="34" selection-end-line="266" selection-end-column="34" />
+        <state relative-caret-position="182">
+          <caret line="10" column="43" lean-forward="true" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/LinearProbingHashST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="96" column="7" lean-forward="true" selection-start-line="96" selection-start-column="7" selection-end-line="96" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/DirectedEdge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="73" column="41" lean-forward="false" selection-start-line="73" selection-start-column="41" selection-end-line="73" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/DepthFirstSearch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-448">
+          <caret line="95" column="40" lean-forward="true" selection-start-line="95" selection-start-column="40" selection-end-line="95" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/DijkstraAllPairsSP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="20" column="31" lean-forward="false" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/EdgeWeightedDigraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="57" column="35" lean-forward="true" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../algs4.jar!/edu/princeton/cs/algs4/DijkstraSP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="148" column="0" lean-forward="true" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CBSPaths.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="96" column="39" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#Pos#0" expanded="false" />
-            <element signature="method#setWidth#0;class#Pos#0" expanded="false" />
-            <element signature="method#setHeight#0;class#Pos#0" expanded="false" />
-            <element signature="method#Pos#0;class#Pos#0" expanded="false" />
-            <element signature="method#getNextH#0;class#Pos#0" expanded="false" />
-            <element signature="method#getNext#0;class#Pos#0" expanded="false" />
-            <element signature="method#getChild#0;class#Pos#0" expanded="false" />
-            <element signature="method#getChildH#0;class#Pos#0" expanded="false" />
-            <element signature="method#xBorder#0;class#SeamCarver#0" expanded="false" />
-            <element signature="method#yBorder#0;class#SeamCarver#0" expanded="false" />
-            <element signature="method#deltaDiff#0;class#SeamCarver#0" expanded="false" />
-            <element signature="method#findVerticalSeam#0;class#SeamCarver#0" expanded="false" />
-            <element signature="method#findHorizontalSeam#0;class#SeamCarver#0" expanded="false" />
-            <element signature="method#isInvalidSeam#0;class#SeamCarver#0" expanded="false" />
-            <element signature="method#energyP#0;class#SeamCarver#0" expanded="false" />
-            <element signature="method#relax#0;class#SeamCarver#0" expanded="false" />
-            <element signature="method#getPath#0;class#SeamCarver#0" expanded="false" />
-            <element signature="method#getPathH#0;class#SeamCarver#0" expanded="false" />
-            <element signature="method#initArr#0;class#SeamCarver#0" expanded="false" />
+            <element signature="method#CBSPaths#0;class#CBSPaths#0" expanded="false" />
+            <element signature="method#prepareST#0;class#CBSPaths#0" expanded="false" />
+            <element signature="method#maxDist#0;class#CBSPaths#0" expanded="false" />
           </folding>
         </state>
       </provider>
