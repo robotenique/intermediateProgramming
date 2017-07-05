@@ -29,6 +29,7 @@ Here's a summary of each EP (programming exercise):
 
 8. *Kd-Trees*
     Implements a Kd-Tree, a data structure similar to a symbol table but the keys are points in the 2D plane, and provides optimized operations to search nearest neighbors of a given point, and rectangle bounding of the point. The main files implemented are 'KdTreeST.java' and 'PointST.java'. PointST is a symbol table which have the same operations but it's implementations are brute force using a **Red Black Tree**. The time comparations of each type of implementation are in the 'readme.txt'. The 'BoidSimulator.java' uses the nearest neighbor operation to simulate birds flying, very cool :D. This assignment is described [here!](http://www.cs.princeton.edu/courses/archive/spring17/cos226/assignments/kdtree.html)
+
     ![kdtree](http://homes.ieu.edu.tr/hakcan/projects/kdtree/files/kdtree.jpg)
 
 9. *WordFinder.java*
@@ -42,10 +43,12 @@ Here's a summary of each EP (programming exercise):
 
 12. *MeuTST.java*
     Implementation of a ternary search trie to work with Strings autocompletion. The ternary tries have the ability to delete words beyond the common search operations. The 'AutocompleteGUI.java' uses this ternary trie and a file to show the autocomplete working.
-    ![ternarytrie](http://www.cs.princeton.edu/courses/archive/fall13/cos226/checklist/autocomplete-tst.png)
+    
+    ![ternarytrie](http://www.redditmirror.cc/cache/websites/www.pcplus.co.uk_8tw1x/www.pcplus.co.uk/files/pcp_images/PCP282theoryfigure2.png)
 
 13. *Binary tree: BST x Red Black Trees*
     Implementation of a BST and a Red Black Tree with extra methods to compute the average number of nodes visited to insert a new element, and the average number of nodes visited when searching an existing element in the trees. These methods provide useful statistics to compare both implementations (the classic BST and the Red Black one).
+
     ![redblack](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Red-black_tree_example.svg/500px-Red-black_tree_example.svg.png)
 
 14. **
