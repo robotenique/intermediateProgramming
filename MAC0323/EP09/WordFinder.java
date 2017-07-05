@@ -3,6 +3,11 @@ import edu.princeton.cs.algs4.*;
 import java.util.*;
 import java.util.Vector;
 
+/* The WordFinder class represents a word finder that receives in
+ * the constructor an array of Strings, in which the Strings are made of
+ * words separated by spaces, without punctuation or special characters.
+ * The class has some methods to count and find the frequency of a given word.
+ */
 public class WordFinder {
     static SeparateChainingHashST<String, Boolean> tempST;
 
@@ -18,6 +23,7 @@ public class WordFinder {
     public int size() {
         return strCount.size();
     }
+
     private void fillST(String[] starr) {
         String[] words;
         arrSize = starr.length;
@@ -29,7 +35,6 @@ public class WordFinder {
                 word = word.replace(" ","");
                 if(word.isEmpty())
                     continue;
-                //try {Thread.sleep(1000);} catch (InterruptedException e) {}
                 insertCounter(word);
                 insertStable(word, i);
             }
@@ -55,7 +60,6 @@ public class WordFinder {
                 hset.add(i);
         }
         else {
-            //try {Thread.sleep(200);} catch (InterruptedException e) {}
             hset = new HashSet<>();
             hset.add(i);
             stable.put(w, hset);
@@ -71,7 +75,7 @@ public class WordFinder {
             else    strCount.put(w, ++cValue);
         }
     }
-
+    /* getMax(): Returns the most repeated word in the String array */
     public String getMax() {
         int nMax = 0, count;
         String max = "";
@@ -84,7 +88,9 @@ public class WordFinder {
         }
         return max;
     }
-
+    /* Returns a word that appears both in the string of the indexes a and b
+     * of the array. If no words are shared between a and b, returns null
+     */
     public String containedIn(int a, int b) {
         if(a < 0 || a > arrSize || b < 0 || b > arrSize)
             throw new java.lang.IllegalArgumentException("Values out of bound!");
@@ -96,6 +102,10 @@ public class WordFinder {
         return null;
     }
 
+    /* Returns an array with the indexes of the initial array where
+     * the string 's' appears. Returns an empty array if the string
+     * doesn't appear anywhere.
+     */
     public int[] appearsIn(String s) {
         HashSet<Integer> hset = stable.get(s);
         int k = 0;
@@ -108,6 +118,7 @@ public class WordFinder {
         return new int[0];
     }
 
+    // Unit testing
     public static void main(String[] args) {
         String filename = args[0];
         StringBuilder sb = new StringBuilder(200);
