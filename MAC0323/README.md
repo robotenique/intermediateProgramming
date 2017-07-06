@@ -11,7 +11,7 @@ Here's a summary of each EP (programming exercise):
 2. **BulgingSquares.java**
 
     Implement a program to draw the following optical illusion, using StdDraw;
-    
+
     ![bulging](https://s-media-cache-ak0.pinimg.com/564x/ee/82/58/ee8258f5118325b9b32e6deb7fff2941.jpg)
 
 3. **LinkedListST.java**
@@ -25,6 +25,8 @@ Here's a summary of each EP (programming exercise):
 5. **Percolation**
 
     Implements a percolation model to check if a given ***n** x **n*** matrix percolates. It uses a union find data structure and has a visualizer to show the percolation interactively. This assignment can be seen [here!](http://www.cs.princeton.edu/courses/archive/spring17/cos226/assignments/percolation.html)
+
+    ![percolation](http://researchhubs.com/uploads/union-find-applications-7.jpg)
 
 6. **Deque and Randomized queues**
 
