@@ -11,6 +11,7 @@ Here's a summary of each EP (programming exercise):
 2. **BulgingSquares.java**
 
     Implement a program to draw the following optical illusion, using StdDraw;
+    
     ![bulging](https://s-media-cache-ak0.pinimg.com/564x/ee/82/58/ee8258f5118325b9b32e6deb7fff2941.jpg)
 
 3. **LinkedListST.java**
