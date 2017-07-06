@@ -179,7 +179,7 @@ public class SeamCarver {
         return Math.sqrt(calcDelta);
     }
 
-    // sequence of indices for vertical seam
+    // sequence of indices for vertical seam - Topological Search
     public   int[] findVerticalSeam()   {
         Queue<Pos> q;
         initArr();
@@ -192,7 +192,7 @@ public class SeamCarver {
         return getPath(new Pos(1, height()));
     }
 
-    // sequence of indices for horizontal seam
+    // sequence of indices for horizontal seam - Topological Search
     public   int[] findHorizontalSeam() {
         Queue<Pos> q;
         initArr();
