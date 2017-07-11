@@ -11,11 +11,11 @@ COMPRESS A FILE
 ---------------
 To compress a given file "example.txt", run in the terminal:
 
-```shell
-$ java-algs4 BurrowsWheeler - < example.txt | java-algs4 MoveToFront - | java-algs4 edu.princeton.cs.algs4.Huffman  - > example.zipped```
+$ java-algs4 BurrowsWheeler - < example.txt | java-algs4 MoveToFront - | java-algs4 edu.princeton.cs.algs4.Huffman  - > example.zipped
+
 
 UNCOMPRESS A FILE
 -----------------
 To decode a file, we just have to apply the inverse transformations in the inverse order:
-```shell
-$ java-algs4 edu.princeton.cs.algs4.Huffman + < example.zipped | java-algs4 MoveToFront + | java-algs4 BurrowsWheeler + > example.unzipped```
+
+$ java-algs4 edu.princeton.cs.algs4.Huffman + < example.zipped | java-algs4 MoveToFront + | java-algs4 BurrowsWheeler + > example.unzipped
