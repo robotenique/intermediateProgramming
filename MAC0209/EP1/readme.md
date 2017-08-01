@@ -9,3 +9,6 @@ Python 3.6
 matplotlib>=2.0.0
 numpy>=1.12.1
 pandas>=0.19.2
+
+Para informações sobre os experimentos e o funcionamento do programa por completo, verifique
+o relatório e o código-fonte.
