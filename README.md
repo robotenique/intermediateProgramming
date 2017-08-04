@@ -8,6 +8,12 @@ Here's an overview of each discipline:
 
     Abstract data types and their implementations. Time and space complexity analysis (worst case, average case, amortized analysis, empirical estimates). Symbol tables: balanced search trees, hash tables, ternary search tries. Graphs: depth-first search, breadth-first search, shortest paths (Dijkstra's algorithm), topological sort, strong components. Text processing: regular expressions and automata, pattern matching (KMP algorithm, Rabin-Karp algorithm), data compression (Huffman codes), suffix arrays. Optional topics: B trees, LZW algorithm for text compression, memory management (garbage collection).
 
+```shell
+ Functional languages. Functions as first order values; polymorphism; Environments and closures; "Postponed" evaluation; Functional languages; Object-oriented langua
+systemctl service start
+```
+
+
 - *MAC0316* - Fundamentals of Programming Languages
 
     Functional languages. Functions as first order values; polymorphism; Environments and closures; "Postponed" evaluation; Functional languages; Object-oriented languages. Abstract types of data. Modules. Inheritance and hierarchies. Logical languages. Predicates, clauses and the unification model. Implementation of the various paradigms in an interpreter; Compilation vs. implementation. Memory management; Stack vs heap; garbage collection.
