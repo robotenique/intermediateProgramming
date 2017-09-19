@@ -5,7 +5,9 @@ Repository where I commit the EP's (Programming Exercises) I'm doing in second y
 Here's an overview of each discipline:
 
 - *MAC0323* - Algorithms and Data Structures II
+
     **You can check the implemented algorithms/data structures in the mac0323 README.md!**
+    
     Abstract data types and their implementations. Time and space complexity analysis (worst case, average case, amortized analysis, empirical estimates). Symbol tables: balanced search trees, hash tables, ternary search tries. Graphs: depth-first search, breadth-first search, shortest paths (Dijkstra's algorithm), topological sort, strong components. Text processing: regular expressions and automata, pattern matching (KMP algorithm, Rabin-Karp algorithm), data compression (Huffman codes), suffix arrays. Optional topics: B trees, LZW algorithm for text compression, memory management (garbage collection).
 
 - *MAC0209* - Modelling and Simulation
