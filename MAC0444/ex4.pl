@@ -57,3 +57,4 @@ primo(A, B) :- pai(PA, A), mae(MB, B), primo(PA, MB).
 primo(A, B) :- mae(MA, A), pai(PB, B), primo(MA, PB).
 primo(A, B) :- mae(MA, A), mae(MB, B), primo(MA, MB).
 primo(A, B) :- primo_1(A, B).
+maior_de_idade(P) :- idade(P, K), K >= 18.
