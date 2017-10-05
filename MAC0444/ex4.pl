@@ -72,3 +72,11 @@ lista_pessoas(L, S) :- match_mulher(S), findall(idade(P, K), (mulher(P), idade(P
 lista_pessoas(L, S) :- match_homem(S), findall(idade(P, K), (homem(P), idade(P, K)), L), !.
 match_mulher(S) :- S == m.
 match_homem(S)  :- S == h.
+% adequados(Hom, Mul)
+% Considering that the 'casados(X, Y)' predicate the X is for the man, and Y for woman
+adequados(H, M) :-
+    homem(H), mulher(M),
+    idade(H, IH), idade(M, IM),
+    (0 =< IM - IH, IM - IH =< 2 ; 0 =< IH - IM, IH - IM =< 10),
+    \+primo(H, M), \+pai(H, M), \+mae(M, H), \+bisavom(M, H), \+bisavof(H, M),
+    \+irmaos(H, M), \+irmaos(M, H), \+casados(H, _), \+casados(_, M).
