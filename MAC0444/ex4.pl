@@ -62,8 +62,13 @@ primo(A, B) :- primo_1(A, B).
 maior_de_idade(P) :- idade(P, K), K >= 18.
 % pessoas
 pessoas(L) :- findall(P, homem(P) ; mulher(P), L).
+% mais_velho
 mais_velho(P) :- pessoas(L), max(L, P), !.
-max([X],X).
+max([X],X) :- !.
 max([X|Xs], X):- max(Xs,Y), idade(X, IDX), idade(Y, IDY), IDX >= IDY.
 max([X|Xs], N):- max(Xs,N), idade(N, IDN), idade(X, IDX), IDN > IDX.
-    
+%lista_pessoas
+lista_pessoas(L, S) :- match_mulher(S), findall(idade(P, K), (mulher(P), idade(P, K)), L), !.
+lista_pessoas(L, S) :- match_homem(S), findall(idade(P, K), (homem(P), idade(P, K)), L), !.
+match_mulher(S) :- S == m.
+match_homem(S)  :- S == h.
