@@ -4,12 +4,14 @@ homem( paulo ).
 homem( carlos ).
 homem( joaquim ).
 homem( filipe ).
+homem( garibaldo ).
 mulher( teresa ).
 mulher( sonia ).
 mulher( ana ).
 mulher( carla ).
 mulher( barbara ).
 mulher( maria ).
+idade( garibaldo, 82).
 idade( americo , 18).
 idade( daniel , 60).
 idade( paulo , 25).
@@ -60,4 +62,8 @@ primo(A, B) :- primo_1(A, B).
 maior_de_idade(P) :- idade(P, K), K >= 18.
 % pessoas
 pessoas(L) :- findall(P, homem(P) ; mulher(P), L).
-% mais_velho
+mais_velho(P) :- pessoas(L), max(L, P), !.
+max([X],X).
+max([X|Xs], X):- max(Xs,Y), idade(X, IDX), idade(Y, IDY), IDX >= IDY.
+max([X|Xs], N):- max(Xs,N), idade(N, IDN), idade(X, IDX), IDN > IDX.
+    
