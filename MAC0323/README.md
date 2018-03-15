@@ -12,7 +12,7 @@ Here's a summary of each EP (programming exercise):
 
     Implement a program to draw the following optical illusion, using StdDraw;
 
-    <p align="center"> <img src="https://s-media-cache-ak0.pinimg.com/564x/ee/82/58/ee8258f5118325b9b32e6deb7fff2941.jpg"/></p>
+    <p align="center"> <img src="http://www.optical-illusionist.com/imagefiles/bulging.jpg"/></p>
 
 3. **LinkedListST.java**
 
